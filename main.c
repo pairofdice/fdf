@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/17 15:59:07 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/17 19:34:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <unistd.h>
 
+void	ft_putnbr(int n);
 void draw_line(int x0, int y0, int x1, int y1)
 {
 	int		s;
@@ -46,14 +47,28 @@ void dda(int x0, int y0, int x1, int y1)
 	int		dx;
 	int		dy;
 
-
 	set_left(&x0, &y0, &x1, &y1);
 	dx = x1 - x0;
 	dy = y1 - y0;
 	m = dy / dx;
+	if (abs(dx) >= abs(dy))
+		step = abs(dx);
+	else
+		step = abs(dy);
+	dx = dx / step;
+	dy = dy / step;
+	x = x1;
+	y = y1;
+	i = 1;
 
-	if (m > 1)
+	while (i <= step) {
+		putpixel(x, y, 5);
+		x = x + dx;
+		y = y + dy;
+		i++;
+  }
 }
+	//	dy=m*dx and dx=dy/m
 
 void	set_left(int *x0, int *y0, int *x1, int *y1)
 {
@@ -70,7 +85,6 @@ void	set_left(int *x0, int *y0, int *x1, int *y1)
 	}
 }
 
-void	ft_putnbr(int n);
 
 void	ft_putchar(char c)
 {
