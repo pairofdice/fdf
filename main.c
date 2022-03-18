@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/17 19:34:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:35:00 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "fdf.h"
+
 #include <unistd.h>
 
-void	ft_putnbr(int n);
+/* void	ft_putnbr(int n);
 void draw_line(int x0, int y0, int x1, int y1)
 {
 	int		s;
@@ -36,60 +38,54 @@ void draw_line(int x0, int y0, int x1, int y1)
 	else
 		t_step = -1;
 	error = w / 2;
-}
+} */
 
-void dda(int x0, int y0, int x1, int y1)
+void	set_left(t_line *line)
+{
+	int	temp;
+
+	if (line->a.x > line->b.x)
+	{
+		temp = line->a.x;
+		line->a.x = line->b.x;
+		line->b.x = temp;
+		temp = line->a.y;
+		line->a.y = line->a.y;
+		line->a.y = temp;
+	}
+}
+void draw_line(t_line *line, t_context *ctx)
 {
 	// find leftmost point
 	// find slope
 	// if slope is greater than 1 reverse x, y and take inverse of slope
-	float	m;
-	int		dx;
-	int		dy;
+	// float	m;
+	float	dx;
+	float	dy;
+	float	steps;
+	int		i;
 
-	set_left(&x0, &y0, &x1, &y1);
-	dx = x1 - x0;
-	dy = y1 - y0;
-	m = dy / dx;
-	if (abs(dx) >= abs(dy))
-		step = abs(dx);
+	set_left(line); // maybe do this before this function is called?
+	dx = line->b.x - line->a.x;
+	dy = line->b.y - line->a.y;
+	// m = dy / dx;
+	// step = ft_max(ft_abs(dx), ft_abs(dy));
+	if (ft_abs(dx) >= ft_abs(dy))
+		steps = ft_abs(dx);
 	else
-		step = abs(dy);
-	dx = dx / step;
-	dy = dy / step;
-	x = x1;
-	y = y1;
-	i = 1;
-
-	while (i <= step) {
-		putpixel(x, y, 5);
-		x = x + dx;
-		y = y + dy;
-		i++;
-  }
-}
-	//	dy=m*dx and dx=dy/m
-
-void	set_left(int *x0, int *y0, int *x1, int *y1)
-{
-	int	temp;
-
-	if (x0 > x1)
+		steps = ft_abs(dy);
+	dx = dx / steps;
+	dy = dy / steps;
+	i = 0;
+	while (i < steps)
 	{
-		temp = *x0;
-		*x0 = *x1;
-		*x1 = temp;
-		temp = *y0;
-		*y0 = *y1;
-		*y1 = temp;
+		mlx_pixel_put(ctx->mlx, ctx->win, line->a.x, line->a.y, 0xFFFFFF);
+		line->a.x = line->a.x + dx;
+		line->a.y = line->a.y + dy;
+		i++;
 	}
 }
-
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+//	dy=m*dx and dx=dy/m
 
 int deal_key(int key_nb, void *param)
 {
@@ -97,29 +93,6 @@ int deal_key(int key_nb, void *param)
 	ft_putchar('\n');
 	return (0);
 }
-
-void	ft_putnbr(int n)
-{
-	if (n < 0 )
-	{
-		ft_putchar('-');
-		if (n == -2147483648)
-		{
-			ft_putchar('2');
-			ft_putnbr(147483648);
-			return ;
-		}
-		n *= -1;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar('0' + n);
-}
-
 
 int main()
 {

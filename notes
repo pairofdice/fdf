@@ -4,10 +4,10 @@ TODO:
 	validate input
 	parse input
 	set up mlx
-	drawing a line
-		w and h
 	projections
 DOING:
+	drawing a line
+		dda 
 DONE:
 ----
 
