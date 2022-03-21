@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/21 12:51:49 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:34:03 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 
 # include "../libft/libft.h"
+# include <fcntl.h>
+# include <unistd.h>
 
 typedef struct s_context
 {
@@ -25,9 +27,9 @@ typedef struct s_context
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	float	x;
+	float	y;
+	float	z;
 }	t_point;
 
 typedef struct s_line

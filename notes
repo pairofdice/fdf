@@ -1,14 +1,14 @@
 TODO:
-	Makefile
-	open input files
 	validate input
 	parse input
 	set up mlx
 	projections
 DOING:
+	open input files
 	drawing a line
 		dda
 DONE:
+	Makefile
 ----
 
 man /usr/share/man/man3/mlx.1

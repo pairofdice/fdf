@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/21 16:07:56 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:12:14 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <unistd.h>
 
-void	set_left(t_line *line)
+/* void	set_left(t_line *line)
 {
 	int	temp;
 
@@ -30,7 +30,7 @@ void	set_left(t_line *line)
 		line->a.y = temp;
 	}
 }
-
+ */
 void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 {
 
