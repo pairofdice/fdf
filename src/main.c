@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/21 15:26:22 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:47:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,15 @@ void	set_left(t_line *line)
 
 void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 {
-	// find leftmost point
-	// find slope
-	// if slope is greater than 1 reverse x, y and take inverse of slope
-	// float	m;
+
 	float	dx;
 	float	dy;
 	float	steps;
 	int		i;
 
-	//set_left(line); // maybe do this before this function is called?
 	dx = line->b.x - line->a.x;
 	dy = line->b.y - line->a.y;
-	// m = dy / dx;
-	// step = ft_max(ft_abs(dx), ft_abs(dy));
+
 	if (ft_abs(dx) >= ft_abs(dy))
 		steps = ft_abs(dx);
 	else
@@ -55,8 +50,8 @@ void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	i = 0;
 	while (i < steps)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, line->a.x, line->a.y, 0xFFFFFF);
-		line->a.x += dx;
+		mlx_pixel_put(mlx_ptr, win_ptr, line->a.x, line->a.y, 0xFFFFFF); 
+		line->a.x += dx;  
 		line->a.y += dy;
 		i++;
 	}
