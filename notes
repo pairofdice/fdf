@@ -7,7 +7,7 @@ TODO:
 	projections
 DOING:
 	drawing a line
-		dda 
+		dda
 DONE:
 ----
 
@@ -64,3 +64,11 @@ slope = (y1 - y0) / (x1 - x0)
     2d_x = (3d_x - 3d_z) * cos(30)
     2d_z = -3d_y + (3d_x + 3d_z) * sin(30)
 - https://www.khanacademy.org/computing/computer-programming/programming-games-visualizations/programming-3d-shapes/a/rotating-3d-shapes
+
+
+◦ open, read, write, close
+◦ malloc, free
+◦ perror, strerror
+◦ exit
+◦ All the functions defined in the math library (-lm and man 3 math)
+◦ All the functions defined in the miniLibX library.
