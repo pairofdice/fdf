@@ -6,12 +6,13 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/21 15:47:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:07:56 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
+#include <stdlib.h>
 
 #include <unistd.h>
 
@@ -38,9 +39,8 @@ void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	float	steps;
 	int		i;
 
-	dx = line->b.x - line->a.x;
-	dy = line->b.y - line->a.y;
-
+	dx = (line->b.x - line->a.x);
+	dy = (line->b.y - line->a.y);
 	if (ft_abs(dx) >= ft_abs(dy))
 		steps = ft_abs(dx);
 	else
@@ -57,13 +57,11 @@ void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	}
 }
 
-int deal_key(int key_nb, void *param)
+int on_keypress(int key_nb)
 {
-	ft_putnbr(key_nb);
-	if (param)
-	{}
-	ft_putchar('\n');
-	return (0);
+	if (key_nb == 53)
+		exit (1);
+	return (1);
 }
 
 int main()
@@ -131,7 +129,7 @@ int main()
 	
 	//int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
 	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
+	mlx_key_hook(win_ptr, on_keypress, (void *)0);
 	mlx_loop(mlx_ptr);
 
 	return (0);
