@@ -6,14 +6,14 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/18 15:48:34 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/21 12:51:49 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_context
 {

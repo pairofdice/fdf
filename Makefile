@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/03/21 12:10:16 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/03/21 13:30:01 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,8 @@ RM = /bin/rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) -I /usr/local/include $(SRC) -L /usr/local/lib/ -lmlx $(FRAMEWORKS)
-
-	// $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIBA)
+$(NAME): $(OBJ) $(LIBA)
+	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS)
 
 $(LIBA):
 	make -C $(LIBFT)
@@ -44,8 +42,3 @@ fclean: clean
 	make -C $(LIBFT) fclean
 
 re: fclean all
-
-
-
-
-cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit

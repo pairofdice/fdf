@@ -72,3 +72,5 @@ slope = (y1 - y0) / (x1 - x0)
 ◦ exit
 ◦ All the functions defined in the math library (-lm and man 3 math)
 ◦ All the functions defined in the miniLibX library.
+
+	// $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIBA)
