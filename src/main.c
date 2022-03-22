@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/21 16:12:14 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:24:20 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@
 	}
 }
  */
-void draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
+
+void	draw_pixel(t_point point, t_frame_buffer *fb, unsigned int color)
+{
+	unsigned long    i;
+
+	i = 4 * ((unsigned int)point.y * fb->width + (unsigned int)point.x);
+
+
+
+}
+
+void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 {
 
 	float	dx;
@@ -134,3 +145,59 @@ int main()
 
 	return (0);
 }
+
+
+t_img_state	img;
+
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			i;
+
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 640, 480, "Machine State");
+
+
+	img.img = mlx_new_image(mlx_ptr, 1920, 1080);
+
+
+	int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
+	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_key_hook(win_ptr, on_keypress, (void *)0);
+	mlx_loop(mlx_ptr);
+
+
+
+
+	t_line    line1;
+	int mx;
+	int my;
+	int win_w;
+	int win_h;
+	win_w = 640;
+	win_h = 480;
+
+	i = 100;
+	while (i < 150)
+	{
+		mlx_pixel_put(mlx_ptr, win_ptr, 100, i, 0xFFFFFF);
+		i++;
+	}
+	mx = win_w / 2;
+	my = win_h / 2;
+	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
+	draw_line(&line1,  mlx_ptr, win_ptr);
+	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 50, 0}};
+	draw_line(&line1,  mlx_ptr, win_ptr);
+	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 50, my + 50, 0}};
+	draw_line(&line1,  mlx_ptr, win_ptr);
+	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 50, my - 50, 0}};
+	draw_line(&line1,  mlx_ptr, win_ptr);
+
+	//int        mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
+	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_key_hook(win_ptr, on_keypress, (void *)0);
+	mlx_loop(mlx_ptr);
+	return (0);

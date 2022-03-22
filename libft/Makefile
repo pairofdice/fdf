@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 12:23:08 by jsaarine          #+#    #+#              #
-#    Updated: 2021/11/24 16:37:22 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/03/22 16:14:32 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS =	ft_memset.c		ft_bzero.c		ft_memcpy.c		ft_memccpy.c	\
 		ft_lstiter.c	ft_lstmap.c		\
 		\
 		ft_iswhitespace.c	ft_islower.c	ft_isupper.c	ft_wordcount.c	\
-		ft_min.c 		ft_max.c		ft_abs.c
+		ft_min.c 		ft_max.c		ft_abs.c	\
+		\
+		ft_getnextline.c
 
 
 

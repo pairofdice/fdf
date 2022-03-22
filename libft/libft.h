@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 17:17:40 by jsaarine          #+#    #+#             */
-/*   Updated: 2021/11/24 16:37:55 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:16:43 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BUFF_SIZE 100
+# define MAX_FD 8192
+
 # include <string.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -21,6 +26,13 @@ typedef struct s_list
 	size_t			content_size;
 	struct s_list	*next;
 }		t_list;
+typedef struct s_vec
+{
+	char			*memory;
+	size_t			elem_size;
+	size_t			alloc_size;
+	size_t			len;
+}	t_vec;
 // PART 1
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -90,5 +102,9 @@ int		ft_wordcount(char const *s, char c, int wordcount);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 int		ft_abs(int a);
+
+
+
+int	get_next_line(const int fd, char **line);
 
 #endif

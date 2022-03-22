@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/22 13:16:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:09:18 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ typedef struct s_line
 	t_point b;
 }	t_line;
 
-typedef struct s_img_state
+typedef struct s_frame_buffer
 {
-	void	*img;
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img_state
+	unsigned char		*data;
+	unsigned long int	data_size;
+	unsigned int		width;
+	unsigned int		height;
+}	t_frame_buffer;
 
 
 #endif
