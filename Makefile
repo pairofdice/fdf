@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/03/21 13:30:01 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/03/22 12:57:46 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
