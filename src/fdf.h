@@ -6,15 +6,25 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
+<<<<<<< HEAD:fdf.h
 /*   Updated: 2022/03/22 12:27:19 by jsaarine         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/21 17:34:03 by jsaarine         ###   ########.fr       */
+>>>>>>> bf1a40fb35b3dcf2e9494c82ec474f554ead4acd:src/fdf.h
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+<<<<<<< HEAD:fdf.h
 # include "libft/libft.h"
 # include "mlx.h"
+=======
+# include "../libft/libft.h"
+# include <fcntl.h>
+# include <unistd.h>
+>>>>>>> bf1a40fb35b3dcf2e9494c82ec474f554ead4acd:src/fdf.h
 
 typedef struct s_context
 {
