@@ -17,14 +17,10 @@
 #ifndef FDF_H
 # define FDF_H
 
-<<<<<<< HEAD:fdf.h
-# include "libft/libft.h"
 # include "mlx.h"
-=======
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
->>>>>>> bf1a40fb35b3dcf2e9494c82ec474f554ead4acd:src/fdf.h
 
 typedef struct s_context
 {
