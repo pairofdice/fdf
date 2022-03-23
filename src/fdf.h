@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/22 15:09:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:00:24 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
-
 
 typedef struct s_context
 {
@@ -49,5 +48,5 @@ typedef struct s_frame_buffer
 	unsigned int		height;
 }	t_frame_buffer;
 
-
+int load_map(char *filename, t_vec *map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/22 15:24:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:52:54 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 }
  */
 
-void	draw_pixel(t_point point, t_frame_buffer *fb, unsigned int color)
+/* void	draw_pixel(t_point point, t_frame_buffer *fb, unsigned int color)
 {
 	unsigned long    i;
 
@@ -41,7 +41,7 @@ void	draw_pixel(t_point point, t_frame_buffer *fb, unsigned int color)
 
 
 }
-
+ */
 void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 {
 
@@ -68,10 +68,12 @@ void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	}
 }
 
-int on_keypress(int key_nb)
+int on_keypress(int key_nb, void *param)
 {
 	if (key_nb == 53)
 		exit (1);
+	if (param)
+	{}
 	return (1);
 }
 
@@ -85,11 +87,13 @@ int main()
 	int my;
 	int win_w;
 	int win_h;
+	t_vec	map;
 
 	win_w = 640;
 	win_h = 480;
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, win_w, win_h, "Machine State");
+	load_map("maps/10-2.fdf", &map);
 	i = 100;
 	while (i < 150)
 	{
@@ -137,6 +141,7 @@ int main()
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 100, my - 50, 0}};
 	draw_line(&line1,  mlx_ptr, win_ptr);
 
+
 	
 	//int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
 	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
@@ -146,7 +151,7 @@ int main()
 	return (0);
 }
 
-
+/* 
 t_img_state	img;
 
 	void		*mlx_ptr;
@@ -200,4 +205,4 @@ t_img_state	img;
 	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
 	mlx_key_hook(win_ptr, on_keypress, (void *)0);
 	mlx_loop(mlx_ptr);
-	return (0);
+	return (0); */

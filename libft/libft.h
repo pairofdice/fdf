@@ -6,14 +6,14 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 17:17:40 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/22 16:16:43 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:00:15 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define BUFF_SIZE 100
+# define BUFF_SIZE 8
 # define MAX_FD 8192
 
 # include <string.h>
@@ -28,7 +28,7 @@ typedef struct s_list
 }		t_list;
 typedef struct s_vec
 {
-	char			*memory;
+	void			*memory;
 	size_t			elem_size;
 	size_t			alloc_size;
 	size_t			len;
@@ -49,6 +49,7 @@ char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strncat(char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strnchr(const char *s, int c, size_t n);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strstr(const char *a, const char *b);
 char	*ft_strnstr(const char *hay, const char *needle, size_t len);
@@ -103,7 +104,13 @@ int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 int		ft_abs(int a);
 
-
+int		vec_new(t_vec *src, size_t init_len, size_t elem_size);
+void	vec_free(t_vec *src);
+int		vec_from(t_vec *dst, void *src, size_t len, size_t elem_size);
+int		vec_resize(t_vec *src, size_t target_size);
+int		vec_push(t_vec *src, void *elem);
+int		vec_append(t_vec *dst, t_vec *src);
+int		vec_strapp(t_vec *vec, char *str);
 
 int	get_next_line(const int fd, char **line);
 
