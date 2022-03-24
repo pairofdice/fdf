@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/24 15:35:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:18:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int load_map(char *filename, t_vec *map)
 	while (r < (int)map->len)
 	{
 		t_vec temp;
-		temp = *(&map->memory[r]);
+		temp = map->memory[r];
+		/* 
 		while (k < map->memory[0]->len)
 		{
 			k++;
 		}
+		*/
 
 		r++;
 	}
