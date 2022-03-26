@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/23 15:52:54 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:56:57 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "../minilibx/mlx.h"
 #include "fdf.h"
 #include <stdlib.h>
 
@@ -61,8 +61,8 @@ void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	i = 0;
 	while (i < steps)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, line->a.x, line->a.y, 0xFFFFFF); 
-		line->a.x += dx;  
+		mlx_pixel_put(mlx_ptr, win_ptr, line->a.x, line->a.y, 0xFFFFFF);
+		line->a.x += dx;
 		line->a.y += dy;
 		i++;
 	}
@@ -142,7 +142,7 @@ int main()
 	draw_line(&line1,  mlx_ptr, win_ptr);
 
 
-	
+
 	//int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
 	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
 	mlx_key_hook(win_ptr, on_keypress, (void *)0);
@@ -151,7 +151,7 @@ int main()
 	return (0);
 }
 
-/* 
+/*
 t_img_state	img;
 
 	void		*mlx_ptr;

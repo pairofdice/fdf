@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_ptrapp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:05:58 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/24 15:59:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:59:50 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	vec_ptrapp(t_vec *vec, void *ptr)
 	if ((vec->len * vec->elem_size) + 1 >= vec->alloc_size)
 		if (vec_resize(vec, (vec->len + 1) * 2) == -1)
 			return (-1);
-	vec->memory[vec->len * vec->elem_size], ptr, sizeof(ptr);
+	ft_memcpy(&vec->memory[vec->len * vec->elem_size], ptr, sizeof(&ptr));
 	vec->len += 1;
 	return (1);
 }

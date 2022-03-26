@@ -2,4 +2,7 @@ a.out
 fdf
 *.gch
 *.o
+minilibx/
+mb
+*.a
 

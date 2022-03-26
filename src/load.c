@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/24 16:18:53 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 09:43:01 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int load_map(char *filename, t_vec *map)
 	int		r;
 	int		k;
 	char	**words;
-	t_vec	temp;
+	t_vec	linevec;
 
 	fd = open(filename, O_RDONLY);
 	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec *));
@@ -28,34 +28,33 @@ int load_map(char *filename, t_vec *map)
 	r = 1;
 	while(r)
 	{
-		vec_new(&temp, BUFF_SIZE * 2, sizeof(int));
+		vec_new(&linevec, BUFF_SIZE * 2, sizeof(int));
 		r = get_next_line(fd, &line);
 		ft_putstr(line);
 		ft_putchar('\n');
 		words = ft_strsplit(line, ' ');
 		while (*words != 0)
 		{
-			vec_intapp(&temp, ft_atoi(*words));
+			vec_intapp(&linevec, ft_atoi(*words));
 			ft_putstr(*words);
 			ft_putchar(' ');
 			words++;
 		}
 		ft_putchar('\n');
-		vec_ptrapp(map, &temp);
-	} 
+		vec_push(map, &linevec);
+	}
 	r = 0;
 	k = 0;
 	while (r < (int)map->len)
 	{
-		t_vec temp;
-		temp = map->memory[r];
-		/* 
-		while (k < map->memory[0]->len)
+
+
+		while (k < 0/* (map->memory)[r].len */)
 		{
 			k++;
 		}
-		*/
-
+		// how do I access each int of each line
+		printf("%d", map->memory[r][k]);
 		r++;
 	}
 	close(fd);
