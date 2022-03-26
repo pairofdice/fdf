@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 17:17:40 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/25 22:55:11 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 10:25:42 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		vec_append(t_vec *dst, t_vec *src);
 int		vec_strapp(t_vec *vec, char *str);
 int		vec_intapp(t_vec *vec, int nb);
 int		vec_ptrapp(t_vec *vec, void *ptr);
+void	*vec_get(t_vec *src, size_t index);
 
 int	get_next_line(const int fd, char **line);
 

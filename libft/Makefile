@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 12:23:08 by jsaarine          #+#    #+#              #
-#    Updated: 2022/03/24 13:19:36 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/03/26 10:24:57 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS =	ft_memset.c		ft_bzero.c		ft_memcpy.c		ft_memccpy.c	\
 		\
 		vec_new.c		vec_free.c		vec_from.c		vec_resize.c	\
 		vec_push.c		vec_append.c	vec_strapp.c	vec_intapp.c	\
-		vec_ptrapp.c	\
+		vec_ptrapp.c	vec_get.c	\
 		\
 		ft_getnextline.c
 
@@ -46,11 +46,11 @@ SRCS =	ft_memset.c		ft_bzero.c		ft_memcpy.c		ft_memccpy.c	\
 
 OBJS = $(SRCS:.c=.o)
 
-HDRS = libft.h 
+HDRS = libft.h
 
 all: $(NAME)
 
-$(NAME): 
+$(NAME):
 	gcc $(FLAGS) $(SRCS) -c -I$(HDRS)
 	ar rc $(NAME) $(OBJS)
 

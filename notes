@@ -2,12 +2,12 @@ TODO:
 	validate input
 	parse input
 	set up mlx
-	projections
+	projections, transforms, rotations, translations
 DOING:
-	open input files
+	open input files and put it into a map
+DONE:
 	drawing a line
 		dda
-DONE:
 	Makefile
 ----
 
@@ -44,7 +44,7 @@ mlx_loop            : handle keyboard or mouse events
 // on Linux/X-Window
 -lmlx -lXext -lX11
 
-// On MacOS
+// On school MacOS
 -lmlx -framework OpenGL -framework AppKit
 
 
@@ -57,6 +57,7 @@ Bresenham's line algorithm'
 y = ((y1 - y0) / (x1 - x0)) * (x - x0) + y0
 slope = (y1 - y0) / (x1 - x0)
 
+Digital Differential Analyzer
 - https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 	xi = xi − 1 + 1, yi = yi − 1 + m
 

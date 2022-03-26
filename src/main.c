@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/25 22:56:57 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 10:10:33 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ int main()
 	int win_w;
 	int win_h;
 	t_vec	map;
+
+	t_vec values;
+
+	vec_new(&values, 10, sizeof(int));
+	for(int i = 0; i > 10; i++)
+		vec_push(&values, &i);
 
 	win_w = 640;
 	win_h = 480;
