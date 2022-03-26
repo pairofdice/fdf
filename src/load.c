@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 11:46:30 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 11:47:30 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int load_map(char *filename, t_vec *map)
 			vec_push(&linevec, &k);
 			words++;
 		}
-		if (r == 1)
+		if (r)
 			vec_push(map, &linevec);
 	}
 	// print it out to make sure it worked
