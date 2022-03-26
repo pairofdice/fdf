@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 11:10:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 11:46:30 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int load_map(char *filename, t_vec *map)
 {
 	int		fd;
 	char	*line;
-	int		r;
-	int		k;
+	size_t	r;
+	size_t	k;
 	char	**words;
 	t_vec	linevec;
-	t_vec	*temp;
+	t_vec	*line_vec;
 
 	fd = open(filename, O_RDONLY);
 	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec));
@@ -37,17 +37,18 @@ int load_map(char *filename, t_vec *map)
 			vec_push(&linevec, &k);
 			words++;
 		}
-		vec_push(map, &linevec);
+		if (r == 1)
+			vec_push(map, &linevec);
 	}
 	// print it out to make sure it worked
 	r = 0;
-	while (r < (int)map->len)
+	while (r < map->len)
 	{
-		temp = vec_get(map, r);
+		line_vec = vec_get(map, r);
 		k = 0;
-		while (k < (int)temp->len)
+		while (k < line_vec->len)
 		{
-			ft_putnbr(*(int *)vec_get(temp, k));
+			ft_putnbr(*(int *)vec_get(line_vec, k));
 			ft_putchar(' ');
 			k++;
 		}
