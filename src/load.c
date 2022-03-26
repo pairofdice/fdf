@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 10:37:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 11:02:56 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int load_map(char *filename, t_vec *map)
 	int		k;
 	char	**words;
 	t_vec	linevec;
-	t_vec	*temp;
+	t_vec	temp;
 
 	fd = open(filename, O_RDONLY);
 	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec));
@@ -45,23 +45,21 @@ int load_map(char *filename, t_vec *map)
 		//ft_putchar('\n');
 		vec_push(map, &linevec);
 	}
-	r = 0;
+r = 0;
+while (r < (int)map->len)
+{
+	temp = vec_get(map, r);
 	k = 0;
-	temp = vec_get(map, 0);
-	while (r < (int)temp->len - 1)
+	while (k < (int)temp->len)
+		temp =(t_vec) map->memory[r];
 	{
-		ft_putnbr(*(int *)vec_get(temp, r));
-
-		while (k < 0/* (map->memory)[r].len */)
-		{
-			k++;
-		}
-		if (temp)
-		{}
-		// how do I access each int of each line
-		// printf("%d", map->memory[r][k]);
-		r++;
+		ft_putnbr(*(int *)vec_get(temp, k));
+		ft_putchar(' ');
+		k++;
 	}
+		ft_putchar('\n');
+	r++;
+}
 	close(fd);
 	return (1);
 }
