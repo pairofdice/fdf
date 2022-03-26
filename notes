@@ -3,9 +3,11 @@ TODO:
 	parse input
 	set up mlx
 	projections, transforms, rotations, translations
+	draw basic map
 DOING:
-	open input files and put it into a map
+	draw into an image
 DONE:
+	open input files and put it into a map
 	drawing a line
 		dda
 	Makefile

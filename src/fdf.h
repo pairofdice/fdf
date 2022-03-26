@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/25 22:55:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:04:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ typedef struct s_line
 
 typedef struct s_frame_buffer
 {
+	void				*img;
 	unsigned char		*data;
-	unsigned long int	data_size;
+	unsigned long int	bits_per_pixel;
 	unsigned int		width;
 	unsigned int		height;
+	unsigned int		endian;
+
 }	t_frame_buffer;
 
 int load_map(char *filename, t_vec *map);

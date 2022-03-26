@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 10:10:33 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:05:35 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 }
  */
-void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
+void	draw_line(t_line *line, void *mlx, void *win)
 {
 
 	float	dx;
@@ -61,7 +61,7 @@ void	draw_line(t_line *line, void *mlx_ptr, void *win_ptr)
 	i = 0;
 	while (i < steps)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, line->a.x, line->a.y, 0xFFFFFF);
+		mlx_pixel_put(mlx, win, line->a.x, line->a.y, 0xFFFFFF);
 		line->a.x += dx;
 		line->a.y += dy;
 		i++;
@@ -79,8 +79,8 @@ int on_keypress(int key_nb, void *param)
 
 int main()
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 	int		i;
 	t_line	line1;
 	int mx;
@@ -89,95 +89,97 @@ int main()
 	int win_h;
 	t_vec	map;
 
-	t_vec values;
+	t_frame_buffer fb;
 
-	vec_new(&values, 10, sizeof(int));
-	for(int i = 0; i > 10; i++)
-		vec_push(&values, &i);
+
 
 	win_w = 640;
 	win_h = 480;
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, win_w, win_h, "Machine State");
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, win_w, win_h, "Machine State");
+	fb.img = mlx_new_image(mlx, win_w, win_h);
+	fb.data = mlx_get_data_addr(fb.img, &fb.bits_per_pixel, &fb.width, &fb.endian);
+
+
 	load_map("maps/10-2.fdf", &map);
 	i = 100;
 	while (i < 150)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, 100, i, 0xFFFFFF);
+		mlx_pixel_put(mlx, win, 100, i, 0xFFFFFF);
 		i++;
 	}
 	i = 100;
 	while (i < 150)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, 150, i, 0xFFFFFF);
+		mlx_pixel_put(mlx, win, 150, i, 0xFFFFFF);
 		i++;
 	}
 	i = 80;
 	while (i < 170)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, i, 200, 0xFFFFFF);
+		mlx_pixel_put(mlx, win, i, 200, 0xFFFFFF);
 		i++;
 	}
 	mx = win_w / 2;
 	my = win_h / 2;
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 50, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 50, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 100, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 100, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 100, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 50, my - 100, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 100, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 100, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 50, my + 100, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 100, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 
 
 
-	//int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
-	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
-	mlx_key_hook(win_ptr, on_keypress, (void *)0);
-	mlx_loop(mlx_ptr);
+	//int		mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
+	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_key_hook(win, on_keypress, (void *)0);
+	mlx_loop(mlx);
 
 	return (0);
 }
 
 /*
-t_img_state	img;
+	t_img_state	img;
 
-	void		*mlx_ptr;
-	void		*win_ptr;
+	void		*mlx;
+	void		*win;
 	int			i;
 
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 640, 480, "Machine State");
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 640, 480, "Machine State");
 
 
-	img.img = mlx_new_image(mlx_ptr, 1920, 1080);
+	img.img = mlx_new_image(mlx, 1920, 1080);
 
 
-	int		mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
-	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
-	mlx_key_hook(win_ptr, on_keypress, (void *)0);
-	mlx_loop(mlx_ptr);
+	int		mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
+	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_key_hook(win, on_keypress, (void *)0);
+	mlx_loop(mlx);
 
 
 
@@ -193,22 +195,22 @@ t_img_state	img;
 	i = 100;
 	while (i < 150)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, 100, i, 0xFFFFFF);
+		mlx_pixel_put(mlx, win, 100, i, 0xFFFFFF);
 		i++;
 	}
 	mx = win_w / 2;
 	my = win_h / 2;
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 50, my + 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 50, my - 50, 0}};
-	draw_line(&line1,  mlx_ptr, win_ptr);
+	draw_line(&line1,  mlx, win);
 
-	//int        mlx_string_put ( void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string );
-	mlx_string_put (mlx_ptr, win_ptr, 300, 300, 0xE3FC03, "How you doin?" );
-	mlx_key_hook(win_ptr, on_keypress, (void *)0);
-	mlx_loop(mlx_ptr);
+	//int        mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
+	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_key_hook(win, on_keypress, (void *)0);
+	mlx_loop(mlx);
 	return (0); */
