@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 10:34:38 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 10:37:28 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int load_map(char *filename, t_vec *map)
 	t_vec	*temp;
 
 	fd = open(filename, O_RDONLY);
-	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec *));
+	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec));
 
 	r = 1;
 	while(r)
@@ -47,10 +47,10 @@ int load_map(char *filename, t_vec *map)
 	}
 	r = 0;
 	k = 0;
-	while (r < (int)map->len - 1)
+	temp = vec_get(map, 0);
+	while (r < (int)temp->len - 1)
 	{
-		temp = vec_get(map, 0);
-		ft_putnbr(*(int *)vec_get(temp, 0));
+		ft_putnbr(*(int *)vec_get(temp, r));
 
 		while (k < 0/* (map->memory)[r].len */)
 		{
