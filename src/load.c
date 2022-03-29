@@ -6,27 +6,27 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/26 13:26:04 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:22:20 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int load_map(char *filename, t_vec *map)
+int	load_map(char *filename, t_vec *map)
 {
 	int		fd;
 	char	*line;
-	size_t	r;
-	size_t	k;
 	char	**words;
+	size_t		k;
+
+	//unsigned char * ptr;
 	t_vec	linevec;
-	t_vec	*line_vec;
+	//t_vec	*line_vec;
 
 	fd = open(filename, O_RDONLY);
 	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec));
-	r = 1;
-	while(get_next_line(fd, &line))
+	while (get_next_line(fd, &line))
 	{
 		vec_new(&linevec, ft_strlen(line) / 2 + 1, sizeof(int));
 		words = ft_strsplit(line, ' ');
@@ -38,11 +38,15 @@ int load_map(char *filename, t_vec *map)
 		}
 		vec_push(map, &linevec);
 	}
-	// print it out to make sure it worked
-	r = 0;
+	t_vec	*line_vec;
+	size_t	r;
+r = 0;
 	while (r < map->len)
 	{
-		line_vec = vec_get(map, r++);
+		//line_vec = vec_get(map, r++);
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		line_vec = (t_vec *) &map->memory[r];
 		k = 0;
 		while (k < line_vec->len)
 		{
@@ -54,3 +58,7 @@ int load_map(char *filename, t_vec *map)
 	close(fd);
 	return (1);
 }
+
+/*
+	// print it out to make sure it worked
+*/
