@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 13:25:08 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:01:40 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx/mlx.h"
+/* #include "../minilibx/mlx.h" */
 #include "fdf.h"
 #include <stdlib.h>
 
@@ -73,6 +73,7 @@ int clamp(int nb, int boundary)
 		nb = boundary;
 	return (nb);
 }
+
 size_t	max_width(t_vec *map)
 {
 	int i;
@@ -88,8 +89,8 @@ size_t	max_width(t_vec *map)
 	}
 	return (max);
 }
-/*
-void	draw_map(t_frame_buffer, t_vec *map, int win_w, int win_h)
+
+void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h)
 {
 	size_t map_h;
 	size_t map_w;
@@ -98,24 +99,25 @@ void	draw_map(t_frame_buffer, t_vec *map, int win_w, int win_h)
 	float margin;
 	int x;
 	int y;
+	t_vec	*map_line;
+	t_line 	line;
 
 	x = map->len;
 	y = max_width(map);
 	y = 0;
 	while (y < map_h - 1)
 	{
+		map_line = (t_vec *)vec_get(map, y);
 		x = 0;
 		while (x < map_w - 1)
 		{
-
-			vec_get();
+			//draw_line();
 			x++;
 		}
 		y++;
 	}
-
 }
- */
+ 
 /*
 	normalize map coordinates from (0, something) to (-1, 1)
  */
@@ -180,7 +182,7 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 	i = 0;
 	while (i < steps)
 	{
-		img_pixel_put(fb, line->a.x, line->a.y, rgb_to_int(0, 255, 0));
+		img_pixel_put(fb, line->a.x, line->a.y, rgb_to_int(255, 255, 255));
 		line->a.x += dx;
 		line->a.y += dy;
 		i++;
@@ -221,11 +223,9 @@ int main()
 	int my;
 	int win_w;
 	int win_h;
-	//t_vec	map;
+	t_vec	map;
 	t_frame_buffer fb;
-
-	//t_frame_buffer fb;
-
+	int fd;
 
 
 	win_w = 640;
@@ -233,37 +233,16 @@ int main()
 	mlx = mlx_init();
 	fb.img = mlx_new_image(mlx, win_w, win_h);
 	fb.data = mlx_get_data_addr(fb.img, &fb.bits_per_pixel, &fb.line_length, &fb.endian);
-	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	win = mlx_new_window(mlx, win_w, win_h, "Machine State");
 	art_project(&fb, win_w, win_h);
-/* 	fb.img = mlx_new_image(mlx, win_w, win_h);
-	fb.data = mlx_get_data_addr(fb.img, &fb.bits_per_pixel, &fb.width, &fb.endian);
- */
 
-	/* load_map("maps/10-2.fdf", &map); */
-/* 	i = 100;
-	while (i < 150)
-	{
-		img_pixel_put(&fb, 100, i, 0xFFFFFF);
-		i++;
-	}
-	i = 100;
-	while (i < 150)
-	{
-		img_pixel_put(&fb, 150, i, 0xFFFFFF);
-		i++;
-	}
-	i = 80;
-	while (i < 170)
-	{
-		img_pixel_put(&fb, i, 200, 0xFFFFFF);
-		i++;
-	} */
-/* 	mx = win_w / 2;
-	my = win_h / 2; */
+	fd = open("maps/10-2.fdf", O_RDONLY);
+	load_map(fd, &map); 
+
+ 	mx = win_w / 2;
+	my = win_h / 2; 
 
 
-	mlx_put_image_to_window(mlx, win, fb.img, 0, 0);
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
 	draw_line(&line1,  &fb);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 50, 0}};
@@ -287,15 +266,17 @@ int main()
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 100, my - 50, 0}};
 	draw_line(&line1,  &fb);
 	line1 = (t_line){(t_point){mx-5, my+5, 0}, (t_point){mx - 50, my + 100, 0}};
+	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
 	draw_line(&line1,  &fb);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 100, my - 50, 0}};
 	draw_line(&line1,  &fb);
 
+	mlx_put_image_to_window(mlx, win, fb.img, 0, 0);
 
 
 	//int		mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
 	mlx_key_hook(win, on_keypress, (void *)0);
-	//mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
+	mlx_string_put (mlx, win, 260, 227, 0xE3FC03, "How you doin?" );
 	mlx_loop(mlx);
 
 	return (0);
@@ -351,7 +332,6 @@ int main()
 	draw_line(&line1,  mlx, win);
 
 	//int        mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
-	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
 	mlx_key_hook(win, on_keypress, (void *)0);
 	mlx_loop(mlx);
 	return (0); */
