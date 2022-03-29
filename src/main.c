@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 17:05:34 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:35:11 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,25 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h)
 /*
 	normalize map coordinates from (0, something) to (-1, 1)
  */
-void model_to_world(t_point *p, t_point *max)
+void model_to_world(t_vec *map, t_point *max)
 {
-	p->x = 2 * p->x / max->x - 1;
-	p->y = 2 * p->y / max->y - 1;
+
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0; 
+	size_t k;
+	t_point *p;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = (t_point *)vec_get(line_vec, k++);
+			p->x = 2 * p->x / max->x - 1;
+			p->y = 2 * p->y / max->y - 1;
+		}
+	} 
 }
 
 void world_to_view()
@@ -210,9 +225,37 @@ void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color)
 {
 	char	*dst;
 
-
 	dst = fb->data + (y * fb->line_length + x * (fb->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+void print_map(t_vec * map)
+{
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0; 
+	size_t k;
+	t_point p;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		//line_vec = (t_vec *) &map->memory[r];
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = *(t_point *)vec_get(line_vec, k++);
+			ft_putnbr(p.x);
+			ft_putchar('-');
+			ft_putnbr(p.y);
+			ft_putchar('-');
+			ft_putnbr(p.z);
+			ft_putchar('\t');
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	} 
 }
 
 int main()
@@ -240,6 +283,10 @@ int main()
 
 	fd = open("maps/10-2.fdf", O_RDONLY);
 	load_map(fd, &map); 
+	print_map(&map);
+	model_to_world(&map, (t_point *){win_w, win_h, 0});
+	print_map(&map);
+	
 
  	mx = win_w / 2;
 	my = win_h / 2; 
