@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 17:01:40 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:05:34 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 
 int on_keypress(int key_nb, void *param)
 {
+	ft_putnbr(key_nb);
+	ft_putchar('\n');
 	if (key_nb == 53)
 		exit (1);
 	if (param)
