@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/30 16:31:02 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:54:11 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <stdlib.h>
 
 #include <unistd.h>
+
+// ILLEGAL!!!!
+#include <stdio.h>
+
 
 /* void	set_left(t_line *line)
 {
@@ -74,23 +78,22 @@ int clamp(int nb, int boundary)
 	return (nb);
 }
 
-size_t	max_width(t_vec *map)
+size_t	max_dims(t_vec *map, t_point *max)
 {
 	int i;
-	size_t max;
 
 	i = 0;
-	max = 0;
+	max->x = map->len;
 	while (i < map->len)
 	{
-		if (max < ((t_vec *)vec_get(map, i))->len)
-			max = ((t_vec *)vec_get(map, i))->len;
+		if (max->y < ((t_vec *)vec_get(map, i))->len)
+			max->y = ((t_vec *)vec_get(map, i))->len;
 		i++;
 	}
-	return (max);
+	return (max->y);
 }
 
-void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h)
+void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max)
 {
 	size_t map_h;
 	size_t map_w;
@@ -100,22 +103,33 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h)
 	int x;
 	int y;
 	t_vec	*map_line;
+	t_vec	*map_next;
 	t_line 	line;
 
-	x = map->len;
-	y = max_width(map);
+	 x = 0;
 	y = 0;
-	while (y < map_h - 1)
+	
+	while (y < max->y - 1)
 	{
 		map_line = (t_vec *)vec_get(map, y);
+		map_next = (t_vec *)vec_get(map, y + 1);
+
 		x = 0;
-		while (x < map_w - 1)
+		while (x < max->x - 1)
 		{
-			//draw_line();
+			t_point p1 = *(t_point *) vec_get(map_line, x);
+			t_point p2 = *(t_point *) vec_get(map_line, x + 1);
+			t_point p3 = *(t_point *) vec_get(map_next, x);
+
+			t_line l1;
+			l1.a = p1;
+			draw_line(&l1, fb);
+			l1.b = p3;
+			draw_line(&l1, fb);
 			x++;
 		}
 		y++;
-	}
+	} 
 }
 
 /*
@@ -136,16 +150,32 @@ void model_to_world(t_vec *map, t_point *max)
 		while (k < line_vec->len)
 		{
 			p = (t_point *)vec_get(line_vec, k++);
-			/*
-			p->x = 2 * p->x / max->x - 1;
-			p->y = 2 * p->y / max->y - 1; */
+			p->x = 
+			p->x =  p->x / (max->x - 1) * 640;
+			p->y =  p->y / (max->y - 1) * 480; 
 		}
 	}
 }
 
-void world_to_view()
+void world_to_view(t_vec *map, t_point *max)
 {
-
+		t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	size_t k;
+	t_point *p;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = (t_point *)vec_get(line_vec, k++);
+			p->x = 
+			p->x = 2.0 * p->x / (max->x - 1) - 1.0;
+			p->y = 2.0 * p->y / (max->y - 1) - 1.0; 
+		}
+	}
 }
 
 void art_project(t_frame_buffer *fb, int win_w, int win_h)
@@ -183,9 +213,12 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 {
 	float	dx;
 	float	dy;
+	float	dc;
 	float	steps;
 	int		i;
 
+
+	dc = (line->b.z - line->a.z);
 	dx = (line->b.x - line->a.x);
 	dy = (line->b.y - line->a.y);
 	if (ft_abs(dx) >= ft_abs(dy))
@@ -197,7 +230,7 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 	i = 0;
 	while (i < steps)
 	{
-		img_pixel_put(fb, line->a.x, line->a.y, rgb_to_int(255, 255, 255));
+		img_pixel_put(fb, line->a.x, line->a.y, rgb_to_int(dc / steps * 200, dc / steps * 200, dc / steps * 200));
 		line->a.x += dx;
 		line->a.y += dy;
 		i++;
@@ -246,15 +279,18 @@ void print_map(t_vec * map)
 		while (k < line_vec->len)
 		{
 			p = *(t_point *)vec_get(line_vec, k++);
+
+			printf("[%4.1f %4.1f %4.1f]", p.x, p.y, p.z);
+			/* 
 			ft_putnbr(p.x);
 			ft_putchar('-');
 			ft_putnbr(p.y);
 			ft_putchar('-');
 			ft_putnbr(p.z);
 			ft_putchar('\t');
-			ft_putchar(' ');
+			ft_putchar(' '); */
 		}
-		ft_putchar('\n');
+		printf("\n");
 	}
 }
 
@@ -284,7 +320,11 @@ int main()
 	fd = open("maps/10-2.fdf", O_RDONLY);
 	load_map(fd, &map);
 	print_map(&map);
-	model_to_world(&map, (t_point *){win_w, win_h, 0});
+	t_point max = {0, 0, 0};
+	max_dims(&map, &max);
+
+	model_to_world(&map, &max);
+	draw_map(&fb, &map, win_w, win_h, &max);
 	print_map(&map);
 
 
