@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 15:18:12 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:20:37 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #ifndef FDF_H
 # define FDF_H
 
-/*  include "../minilibx/mlx.h" */
-# include "mlx.h"
+#include "../minilibx/mlx.h"
+// # include "mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>

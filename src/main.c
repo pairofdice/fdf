@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 18:35:11 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:31:02 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h)
 		y++;
 	}
 }
- 
+
 /*
 	normalize map coordinates from (0, something) to (-1, 1)
  */
@@ -126,7 +126,7 @@ void model_to_world(t_vec *map, t_point *max)
 
 	t_vec	*line_vec;
 	size_t	r;
-	r = 0; 
+	r = 0;
 	size_t k;
 	t_point *p;
 	 while (r < map->len)
@@ -136,10 +136,11 @@ void model_to_world(t_vec *map, t_point *max)
 		while (k < line_vec->len)
 		{
 			p = (t_point *)vec_get(line_vec, k++);
+			/*
 			p->x = 2 * p->x / max->x - 1;
-			p->y = 2 * p->y / max->y - 1;
+			p->y = 2 * p->y / max->y - 1; */
 		}
-	} 
+	}
 }
 
 void world_to_view()
@@ -180,7 +181,6 @@ int rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
 
 void	draw_line(t_line *line, t_frame_buffer *fb)
 {
-
 	float	dx;
 	float	dy;
 	float	steps;
@@ -233,7 +233,7 @@ void print_map(t_vec * map)
 {
 	t_vec	*line_vec;
 	size_t	r;
-	r = 0; 
+	r = 0;
 	size_t k;
 	t_point p;
 	 while (r < map->len)
@@ -255,7 +255,7 @@ void print_map(t_vec * map)
 			ft_putchar(' ');
 		}
 		ft_putchar('\n');
-	} 
+	}
 }
 
 int main()
@@ -282,14 +282,14 @@ int main()
 	art_project(&fb, win_w, win_h);
 
 	fd = open("maps/10-2.fdf", O_RDONLY);
-	load_map(fd, &map); 
+	load_map(fd, &map);
 	print_map(&map);
 	model_to_world(&map, (t_point *){win_w, win_h, 0});
 	print_map(&map);
-	
+
 
  	mx = win_w / 2;
-	my = win_h / 2; 
+	my = win_h / 2;
 
 
 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
