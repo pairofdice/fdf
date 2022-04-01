@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/31 13:54:11 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:31:51 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 // ILLEGAL!!!!
 #include <stdio.h>
+#include <math.h>
 
 
 /* void	set_left(t_line *line)
@@ -109,23 +110,34 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max
 	 x = 0;
 	y = 0;
 	
-	while (y < max->y - 1)
+	while (y < max->y )
 	{
 		map_line = (t_vec *)vec_get(map, y);
 		map_next = (t_vec *)vec_get(map, y + 1);
 
 		x = 0;
-		while (x < max->x - 1)
+		while (x < max->x )
 		{
-			t_point p1 = *(t_point *) vec_get(map_line, x);
-			t_point p2 = *(t_point *) vec_get(map_line, x + 1);
-			t_point p3 = *(t_point *) vec_get(map_next, x);
+			t_point *p1 = (t_point *) vec_get(map_line, x);
+			t_point *p2 = (t_point *) vec_get(map_line, x + 1);
+			if (!p2 || !map_next )
+				break;
+			t_point *p3 = (t_point *) vec_get(map_next, x );
 
-			t_line l1;
-			l1.a = p1;
-			draw_line(&l1, fb);
-			l1.b = p3;
-			draw_line(&l1, fb);
+
+			line.a = *p1;
+			line.b = *p2;
+
+			draw_line(&line, fb);
+			line.b = *p3;
+			draw_line(&line, fb);
+			if (x == max->x - 1)
+			{
+				p3 = (t_point *) vec_get(map_next, x + 1);
+				line.a = *p2;
+				line.b = *p3;
+				draw_line(&line, fb);
+			}
 			x++;
 		}
 		y++;
@@ -150,14 +162,36 @@ void model_to_world(t_vec *map, t_point *max)
 		while (k < line_vec->len)
 		{
 			p = (t_point *)vec_get(line_vec, k++);
-			p->x = 
-			p->x =  p->x / (max->x - 1) * 640;
-			p->y =  p->y / (max->y - 1) * 480; 
+			p->x = p->x / (max->x - 1) * 2 - 1;
+			p->y = p->y / (max->y - 1) * 2 - 1; 
+			p->z = p->z / 20.0;
 		}
 	}
 }
 
-void world_to_view(t_vec *map, t_point *max)
+void world_to_view(t_vec *map, int win_w, int win_h)
+{
+
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	size_t k;
+	t_point *p;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = (t_point *)vec_get(line_vec, k++);
+			p->x = (1 + p->x) * 150 + 90;
+			p->y = (1 + p->y) * 100 + 70; 
+			p->z = p->z * 10.0;
+		}
+	}
+}
+
+void isometric(t_vec *map)
 {
 		t_vec	*line_vec;
 	size_t	r;
@@ -171,12 +205,43 @@ void world_to_view(t_vec *map, t_point *max)
 		while (k < line_vec->len)
 		{
 			p = (t_point *)vec_get(line_vec, k++);
-			p->x = 
-			p->x = 2.0 * p->x / (max->x - 1) - 1.0;
-			p->y = 2.0 * p->y / (max->y - 1) - 1.0; 
+			float x = p->x;
+			float y = p->y;
+			float z = p->z;
+			p->x = (x - z) * cos(30) ;
+			p->y = -y + (x + z) * sin(30) ; 
 		}
 	}
 }
+
+// 2d_x = (3d_x - 3d_z) * cos(30)
+// 2d_z = -3d_y + (3d_x + 3d_z) * sin(30)
+
+void rotate(t_vec *map, float rot)
+{
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	size_t k;
+	t_point *p;
+
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = (t_point *)vec_get(line_vec, k++);
+			float x = p->x;
+			float y = p->y;
+			p->x = x * cos(rot) - y * sin(rot);
+			p->y = y * cos(rot) + x * sin(rot); 
+		}
+	}
+}
+
+
+
 
 void art_project(t_frame_buffer *fb, int win_w, int win_h)
 {
@@ -192,7 +257,7 @@ void art_project(t_frame_buffer *fb, int win_w, int win_h)
 			xc = (float)x/(float)win_w * 255;
 			yc = (float)y/(float)win_h * 255;
 			xyc = (float)(x + y)/(float)4 ;
-			img_pixel_put(fb, x, y, rgb_to_int(xc % 51 * 5, yc, (float)(xc + yc) / (float)2));
+			img_pixel_put(fb, x, y, rgb_to_int(xc, yc, (float)(xc + yc) / (float)2));
 			x++;
 		}
 		y++;
@@ -217,6 +282,10 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 	float	steps;
 	int		i;
 
+	if (line->b.x < 0 || line->b.x >= 640)
+		return ;
+	if (line->b.y < 0 || line->b.x >= 480)
+		return ;
 
 	dc = (line->b.z - line->a.z);
 	dx = (line->b.x - line->a.x);
@@ -227,12 +296,15 @@ void	draw_line(t_line *line, t_frame_buffer *fb)
 		steps = ft_abs(dy);
 	dx = dx / steps;
 	dy = dy / steps;
+	dc = dc / steps;
 	i = 0;
 	while (i < steps)
 	{
-		img_pixel_put(fb, line->a.x, line->a.y, rgb_to_int(dc / steps * 200, dc / steps * 200, dc / steps * 200));
-		line->a.x += dx;
-		line->a.y += dy;
+
+		/* if (dc < 0) */
+			img_pixel_put(fb, line->a.x + dx * i, line->a.y + dy * i, rgb_to_int((float)(steps - i)/steps * 255, (float)i/steps * 255, (float)i/steps * 255));
+		/* else
+			img_pixel_put(fb, line->a.x + dx * i, line->a.y + dy * i, rgb_to_int((float)(steps - i)/steps * 255, (float)i/steps * 255, (float)i/steps * 255)); */
 		i++;
 	}
 }
@@ -324,6 +396,9 @@ int main()
 	max_dims(&map, &max);
 
 	model_to_world(&map, &max);
+	isometric(&map);
+	//rotate(&map, 0.1);
+	world_to_view(&map, win_w, win_h);
 	draw_map(&fb, &map, win_w, win_h, &max);
 	print_map(&map);
 
@@ -332,7 +407,7 @@ int main()
 	my = win_h / 2;
 
 
-	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
+/* 	line1 = (t_line){(t_point){mx+5, my+5, 0}, (t_point){mx + 50, my + 50, 0}};
 	draw_line(&line1,  &fb);
 	line1 = (t_line){(t_point){mx+5, my-5, 0}, (t_point){mx + 50, my - 50, 0}};
 	draw_line(&line1,  &fb);
@@ -358,14 +433,14 @@ int main()
 	mlx_string_put (mlx, win, 300, 300, 0xE3FC03, "How you doin?" );
 	draw_line(&line1,  &fb);
 	line1 = (t_line){(t_point){mx-5, my-5, 0}, (t_point){mx - 100, my - 50, 0}};
-	draw_line(&line1,  &fb);
+	draw_line(&line1,  &fb); */
 
 	mlx_put_image_to_window(mlx, win, fb.img, 0, 0);
 
 
 	//int		mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
 	mlx_key_hook(win, on_keypress, (void *)0);
-	mlx_string_put (mlx, win, 260, 227, 0xE3FC03, "How you doin?" );
+	//mlx_string_put (mlx, win, 260, 227, 0xE3FC03, "How you doin?" );
 	mlx_loop(mlx);
 
 	return (0);
