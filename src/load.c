@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/29 17:25:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/03 10:05:15 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	load_map(int fd, t_vec *map)
 		while (*words != 0)
 		{
 			p.z = ft_atoi(*words);
+			p.c = p.z;
+			ft_putnbr(p.z);
 			vec_push(&linevec, &p);
 			words++;
 			p.x++;
@@ -41,7 +43,7 @@ int	load_map(int fd, t_vec *map)
 		p.y++;
 	}
 	// print it out to make sure it worked
- 	
+
 	close(fd);
 	return (1);
 }

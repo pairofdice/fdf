@@ -6,14 +6,20 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/03/28 14:41:03 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/02 11:12:06 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 S = src/
 SRC = 	$Smain.c \
-		$Sload.c
+		$Sload.c \
+		$Sdraw.c \
+		$Stransforms.c \
+		$Sart.c
+
+
+
 HDR = fdf.h
 OBJ = $(SRC:%.c=%.o)
 LIBFT = libft/
