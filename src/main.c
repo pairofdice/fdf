@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/05 17:13:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:39:25 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,7 @@ void print_map(t_vec * map)
 			p = *(t_point *)vec_get(line_vec, k++);
 
 			printf("[%4.1f %4.1f %4.1f]", p.x, p.y, p.z);
-			/*
-			ft_putnbr(p.x);
-			ft_putchar('-');
-			ft_putnbr(p.y);
-			ft_putchar('-');
-			ft_putnbr(p.z);
-			ft_putchar('\t');
-			ft_putchar(' '); */
+
 		}
 		printf("\n");
 	}

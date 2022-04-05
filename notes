@@ -7,7 +7,11 @@ TODO:
 	projections, transforms, rotations, translations
 	debug line drawing
 	antialiased lines???
+	epätasainen kartta
+	mouse ja key hook -> mlx_hook
 DOING:
+	muuta transfromit per pointiksi
+	tee transformit draw_mapissa
 DONE:
 	draw basic map
 	draw into an image

@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 12:31:48 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:57:03 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max
 				t_point *p1 = (t_point *) vec_get(map_line, x);
 				t_point *p2 = (t_point *) vec_get(map_line, x + 1);
 				t_point *p3 = (t_point *) vec_get(map_next, x);
+				model_to_world(&map, &max);
+				isometric(&map);
+				world_to_view(&map, win_w, win_h);
 
 				line.a = *p1;
 				line.b = *p2;
 				draw_line(&line, fb, win_w, win_h);
 				line.b = *p3;
 				draw_line(&line, fb, win_w, win_h);
-
-
 				if (x == map_line->len - 2)
 				{
 					p3 = (t_point *) vec_get(map_next, x + 1);
 					line.a = *p2;
 					line.b = *p3;
 					draw_line(&line, fb, win_w, win_h);
-
 				}
 				if (y == map->len - 2)
 				{
@@ -77,14 +77,13 @@ void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max
 					line.a = *p3;
 					line.b = *p2;
 					draw_line(&line, fb, win_w, win_h);
-
 				}
-
 				x++;
 			}
 		y++;
 	}
 }
+
 int		points_in_win(t_line *l, int win_w, int win_h)
 {
 	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= win_w || l->a.y >= win_h)
@@ -93,7 +92,6 @@ int		points_in_win(t_line *l, int win_w, int win_h)
 		return (0);
 	return (1);
 }
-
 
 void	draw_line(t_line *line, t_frame_buffer *fb, int win_w, int win_h)
 {
