@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/02 11:12:06 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/04 16:01:26 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT = libft/
 LIBA = libft/libft.a
 FRAMEWORKS = -framework OpenGL -framework AppKit
 CC = clang
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS =# -Wall -Wextra -Werror
 RM = /bin/rm -f
 
 all: $(NAME)

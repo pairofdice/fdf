@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 11:22:51 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:49:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@
 # include <unistd.h>
 # include <math.h>
 
-typedef struct s_context
-{
-	void	*mlx;
-	void	*win;
-	int		w;
-	int		h;
-}	t_context;
 
 typedef struct s_point
 {
@@ -54,6 +47,16 @@ typedef struct s_frame_buffer
 
 }	t_frame_buffer;
 
+typedef struct s_context
+{
+	void	*mlx;
+	void	*win;
+	t_frame_buffer *fb;
+	int		w;
+	int		h;
+	t_vec *map;
+	t_point *max;
+}	t_context;
 
 int		load_map(int fd, t_vec *map);
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color);
@@ -65,5 +68,6 @@ void	world_to_view(t_vec *map, int win_w, int win_h);
 void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max);
 void isometric(t_vec *map);
 void rotate(t_vec *map, float rot);
+void print_map(t_vec * map);
 
 #endif

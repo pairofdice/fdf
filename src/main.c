@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 12:40:30 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/05 17:13:28 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,41 @@ void	max_dims(t_vec *map, t_point *max)
 
 int on_keypress(int key_nb, void *param)
 {
+	void	*mlx;
+	void	*win;
+	t_frame_buffer *fb;
+	t_context *ctx;
 	ft_putnbr(key_nb);
 	ft_putchar('\n');
 	if (key_nb == 53 || key_nb == 65307)
 		exit (1);
-	if (param)
-	{}
+
+	ctx = (t_context *) param;
+	rotate(ctx->map, 0.1);
+	art_project(ctx->fb, ctx->w, ctx->h);
+	draw_map(ctx->fb, ctx->map, ctx->w, ctx->h, ctx->max);
+	ft_putchar('L');
+	mlx = ctx->mlx;
+	win = ctx->win;
+	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->fb->img, 0, 0);
+
+	//print_map(&ctx.map);
+/* 	if (param)
+	{} */
 	return (1);
 }
 
 
-/* int		on_mousepress(int button,int x,int y,void *param)
+int		on_mousepress(int button,int x,int y,void *param)
 {
+	ft_putnbr(button);
+	ft_putchar('\n');
+	rotate(param, 0.1);
+	/* if (key_nb == 53 || key_nb == 65307)
+		exit (1); */
+
 	return (1);
-} */
+}
 
 void print_map(t_vec * map)
 {
@@ -106,6 +127,7 @@ int main(int argc, char **argv)
 	t_vec	map;
 	t_frame_buffer fb;
 	int fd;
+	t_context ctx;
 
 	win_w = 900;
 	win_h = 900;
@@ -125,8 +147,16 @@ int main(int argc, char **argv)
 	max_dims(&map, &max);
 
 
+	ctx.mlx = mlx;
+	ctx.win = win;
+	ctx.fb = &fb;
+	ctx.map = &map;
+	ctx.w = win_w;
+	ctx.h = win_h;
+	ctx.max = &max;
+
 	model_to_world(&map, &max);
-	//rotate(&map, -0.785);
+	//rotate(&map, 0.9);
 	isometric(&map);
 	world_to_view(&map, win_w, win_h);
 	draw_map(&fb, &map, win_w, win_h, &max);
@@ -136,13 +166,16 @@ int main(int argc, char **argv)
  	mx = win_w / 2;
 	my = win_h / 2;
 
+
+	mlx_mouse_hook (win, on_mousepress, &map);
+	mlx_key_hook(win, on_keypress, &ctx);
 	mlx_put_image_to_window(mlx, win, fb.img, 0, 0);
 
 
 	//int		mlx_string_put ( void *mlx, void *win, int x, int y, int color, char *string );
-	mlx_key_hook(win, on_keypress, (void *)0);
 	//mlx_string_put (mlx, win, win_w/2 - 64, 200, 0xFFFFFF, "How you doin?" );
 	mlx_loop(mlx);
+
 
 	return (0);
 }

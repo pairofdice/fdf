@@ -1,12 +1,17 @@
 TODO:
+	normalize height
+	Stop editing map on transformations
+	keyhooks for changing view
 	validate input
 	parse input
-	set up mlx
 	projections, transforms, rotations, translations
-	draw basic map
+	debug line drawing
+	antialiased lines???
 DOING:
-	draw into an image
 DONE:
+	draw basic map
+	draw into an image
+	set up mlx
 	open input files and put it into a map
 	drawing a line
 		dda
@@ -18,6 +23,8 @@ man /usr/share/man/man3/mlx_new_window.1
 man /usr/share/man/man3/mlx_pixel_put.1
 man /usr/share/man/man3/mlx_new_image.1
 man /usr/share/man/man3/mlx_loop.1
+
+man minilibx/man/man3/
 
 #include <mlx.h>
 

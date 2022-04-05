@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 12:25:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:15:22 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void rotate(t_vec *map, float rot)
 	size_t k;
 	t_point *p;
 
+
 	 while (r < map->len)
 	{
 		line_vec = vec_get(map, r++);
@@ -54,10 +55,10 @@ void rotate(t_vec *map, float rot)
 		while (k < line_vec->len)
 		{
 			p = (t_point *)vec_get(line_vec, k++);
-			float x = p->x;
-			float y = p->y;
-			p->x = x * cos(rot) - y * sin(rot);
-			p->y = y * cos(rot) + x * sin(rot);
+			float x = p->x - 500;
+			float y = p->y - 500;
+			p->x = x * cos(rot) - y * sin(rot) + 500;
+			p->y = y * cos(rot) + x * sin(rot) + 500;
 		}
 	}
 }
