@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/05 17:13:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:13:02 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,7 @@ void print_map(t_vec * map)
 			p = *(t_point *)vec_get(line_vec, k++);
 
 			printf("[%4.1f %4.1f %4.1f]", p.x, p.y, p.z);
-			/*
-			ft_putnbr(p.x);
-			ft_putchar('-');
-			ft_putnbr(p.y);
-			ft_putchar('-');
-			ft_putnbr(p.z);
-			ft_putchar('\t');
-			ft_putchar(' '); */
+
 		}
 		printf("\n");
 	}
@@ -146,7 +139,6 @@ int main(int argc, char **argv)
 	t_point max = {0, 0, 0};
 	max_dims(&map, &max);
 
-
 	ctx.mlx = mlx;
 	ctx.win = win;
 	ctx.fb = &fb;
@@ -154,12 +146,13 @@ int main(int argc, char **argv)
 	ctx.w = win_w;
 	ctx.h = win_h;
 	ctx.max = &max;
-
 	model_to_world(&map, &max);
-	//rotate(&map, 0.9);
-	isometric(&map);
 	world_to_view(&map, win_w, win_h);
+
+
+ft_putchar('E');
 	draw_map(&fb, &map, win_w, win_h, &max);
+ft_putchar('L');
 	//print_map(&map);
 
 
@@ -176,6 +169,6 @@ int main(int argc, char **argv)
 	//mlx_string_put (mlx, win, win_w/2 - 64, 200, 0xFFFFFF, "How you doin?" );
 	mlx_loop(mlx);
 
-
+	system("leaks mb");
 	return (0);
 }

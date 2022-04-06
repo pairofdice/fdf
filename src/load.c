@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 10:05:15 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:02:29 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	load_map(int fd, t_vec *map)
 		p.y++;
 	}
 	// print it out to make sure it worked
-
+	ft_putchar('H');
 	close(fd);
 	return (1);
 }
