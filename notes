@@ -1,15 +1,16 @@
 TODO:
+	antialiased lines HIGHLY OPTIONAL
 	normalize height
-	Stop editing map on transformations
-	keyhooks for changing view
-	validate input
-	parse input
-	projections, transforms, rotations, translations
+	keyhooks for changing view - mouse ja key hook -> mlx_hook
 	debug line drawing
-	antialiased lines???
+	validate input
+	parse input - color too
 	epätasainen kartta
-	mouse ja key hook -> mlx_hook
+	empty file segfault
+	fix makefile to do libft
 DOING:
+	projections, transforms, rotations, translations
+	Stop editing map on transformations
 	muuta transfromit per pointiksi
 	tee transformit draw_mapissa
 DONE:
