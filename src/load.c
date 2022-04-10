@@ -6,12 +6,29 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/10 10:47:52 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:42:27 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
+int	handle_args(int argc, char **argv, t_vec *map)
+{
+	int	fd;
+
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+	}
+	else
+	{
+		ft_putstr("Usage: ./fdf <map>");
+		fd = open("maps/10-2.fdf", O_RDONLY);
+	}
+	load_map(fd, map);
+	return (1);
+}
 
 int	load_map(int fd, t_vec *map)
 {

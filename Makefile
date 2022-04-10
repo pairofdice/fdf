@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/10 12:23:06 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/10 21:38:39 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRC =	$Smain.c \
 		$Stransforms.c \
 		$Sart.c \
 		$Sline.c \
-		$Spixel_color.c
+		$Spixel_color.c \
+		$Shelp_text.c \
+		$Sinit.c
 
 
 

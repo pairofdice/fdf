@@ -6,14 +6,16 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/10 12:28:59 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/10 23:36:37 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef FDF_H
 # define FDF_H
 
+#include <time.h>
 # include "../minilibx/mlx.h"
 // # include "mlx.h"
 # include "../libft/libft.h"
@@ -21,13 +23,18 @@
 # include <unistd.h>
 # include <math.h>
 
-# define	ON_KEYDOWN 2
-# define	ON_KEYUP 3
-# define	ON_MOUSEDN 4
-# define	ON_MOUSEUP 5
-# define	ON_MOUSEMOV 6
-# define	ON_EXPOSE 2
-# define	ON_DESTROY 17
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+# define	WIN_W 900
+# define	WIN_H 900
 
 typedef struct s_point
 {
@@ -47,6 +54,7 @@ typedef struct s_frame_buffer
 {
 	void	*img;
 	char	*data;
+	char	*databg;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -69,18 +77,23 @@ typedef struct s_context
 {
 	void	*mlx;
 	void	*win;
-	t_frame_buffer *fb;
+	t_frame_buffer fb;
+	//t_frame_buffer fb_bg;
 	int		w;
 	int		h;
-	t_vec *map;
-	t_point *max;
-	t_transforms *t;
+	t_vec	map;
+	t_point max;
+	t_transforms t;
+	clock_t	tic;
 }	t_context;
 
 
 int		load_map(int fd, t_vec *map);
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color);
+void	save_bg(t_frame_buffer *fb, int x, int y, int color);
+void	checked_pixel_put(t_frame_buffer *fb, int x, int y, int color);
 int		rgb_to_int(unsigned char r, unsigned char g, unsigned char b);
+int		argb_to_int(unsigned char a, unsigned char r, unsigned char g, unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
 void	background(t_frame_buffer *fb, int win_w, int win_h);
 void	model_to_world(t_point *p, t_point *max);
@@ -92,6 +105,10 @@ void	scale(t_point *p, float multiplier);
 void	zscale(t_point *p, float multiplier);
 void	translate(t_point *p, int x, int y);
 int		draw_frame(void *t);
+void	help_text(t_context *ctx);
+
+void	init_context(t_context *ctx);
+int	handle_args(int argc, char **argv, t_vec *map);
 //void print_map(t_point *p);
 
 #endif

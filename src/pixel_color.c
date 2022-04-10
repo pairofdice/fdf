@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel.c                                            :+:      :+:    :+:   */
+/*   pixel_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:20:23 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/10 12:21:27 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/10 14:42:25 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	checked_pixel_put(t_frame_buffer *fb, int x, int y, int color)
 		dst = fb->data + (y * fb->line_length + x * (fb->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
+}
+
+void	save_bg(t_frame_buffer *fb, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = fb->databg + (y * fb->line_length + x * (fb->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color)
