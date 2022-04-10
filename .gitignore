@@ -5,4 +5,4 @@ fdf
 minilibx/
 mb
 *.a
-
+*dSYM/

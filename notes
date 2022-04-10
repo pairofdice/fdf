@@ -1,13 +1,18 @@
 TODO:
+	antialiased lines HIGHLY OPTIONAL
 	normalize height
-	Stop editing map on transformations
-	keyhooks for changing view
-	validate input
-	parse input
-	projections, transforms, rotations, translations
+	keyhooks for changing view - mouse ja key hook -> mlx_hook
 	debug line drawing
-	antialiased lines???
+	validate input
+	parse input - color too
+	epätasainen kartta
+	empty file segfault
+	fix makefile to do libft
 DOING:
+	projections, transforms, rotations, translations
+	Stop editing map on transformations
+	muuta transfromit per pointiksi
+	tee transformit draw_mapissa
 DONE:
 	draw basic map
 	draw into an image
@@ -84,3 +89,12 @@ Digital Differential Analyzer
 ◦ All the functions defined in the miniLibX library.
 
 	// $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIBA)
+
+
+INT_MAX:	 2147483647
+INT_MIN:	-2147483648
+
+#include <time.h>
+clock_t tic = clock();
+clock_t toc = clock();
+printf("Elapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);

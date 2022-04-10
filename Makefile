@@ -6,17 +6,21 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/04 16:01:26 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/10 21:38:39 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 S = src/
-SRC = 	$Smain.c \
+SRC =	$Smain.c \
 		$Sload.c \
 		$Sdraw.c \
 		$Stransforms.c \
-		$Sart.c
+		$Sart.c \
+		$Sline.c \
+		$Spixel_color.c \
+		$Shelp_text.c \
+		$Sinit.c
 
 
 
@@ -26,7 +30,7 @@ LIBFT = libft/
 LIBA = libft/libft.a
 FRAMEWORKS = -framework OpenGL -framework AppKit
 CC = clang
-CFLAGS =# -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 RM = /bin/rm -f
 
 all: $(NAME)
@@ -35,8 +39,8 @@ $(NAME): $(SRC) $(OBJ) $(LIBA)
 	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS)
 
 mb: $(SRC) $(OBJ) $(LIBA)
-	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext  $(FRAMEWORKS)
-
+	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS)  -g -fsanitize=address
+# -g -fsanitize=address
 $(LIBA):
 	make -C $(LIBFT)
 
