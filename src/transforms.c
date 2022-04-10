@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/05 19:43:11 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/08 10:55:08 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,46 @@ void isometric(t_point *p)
 	p->y = -z + (x + y) * 0.44717101221 ; //0.523598 sin(30)
 }
 
+	#include <stdio.h>
 void rotate(t_point *p, float rot)
 {
 
-	float x = p->x - 500;
-	float y = p->y - 500;
-	p->x = x * cos(rot) - y * sin(rot) + 500;
-	p->y = y * cos(rot) + x * sin(rot) + 500;
+	float x = p->x;
+	float y = p->y;
+	p->x = x * cos(rot) - y * sin(rot) ;
+	p->y = y * cos(rot) + x * sin(rot) ;
+	// printf("\n ??? %f", p->y);
+}
 
+void scale(t_point *p, float multiplier)
+{
+	p->x *= multiplier;
+	p->y *= multiplier;
+	p->z *= multiplier;
+}
+
+
+void translate(t_point *p, int x, int y)
+{
+	p->x += x;
+	p->y += y;
+}
+
+
+void zscale(t_point *p, float multiplier)
+{
+	p->z *= multiplier ;
 }
 
 void world_to_view(t_point *p, int win_w, int win_h)
 {
-	p->x = (win_w/2.8) + p->x * (win_w / 4.0 + 1) ;
-	p->y = (win_h/2) + p->y * (win_h / 4.0 + 1) ;
+
+	p->x = ((float)win_w/2.0) + p->x * (win_w / 4.0 ) ;
+	p->y = ((float)win_h/2.0) + p->y * (win_h / 4.0 ) ;
+
+	//printf("%f \n", p->y);
+/* 	p->x = p->x * 200.0;
+	p->y = p->y * 200.0; */
 	p->z = p->z * 0.5;
 }
 
@@ -48,7 +74,9 @@ void world_to_view(t_point *p, int win_w, int win_h)
 
 void model_to_world(t_point *p, t_point *max)
 {
-	p->x = p->x / (ft_max(max->x, max->y) - 1) * 2 - 1;
-	p->y = p->y / (ft_max(max->x, max->y) - 1) * 2 - 1;
+	p->x = p->x / (max->x  - 1 ) * 2 - 1;
+	p->y = p->y / (max->y - 1 ) * 2 - 1 ;
+	//printf("%f %f %f \n", p->y, max->x, max->y);
+	// ft_max(max->x, max->y)
 	p->z = p->z / 155.0;
 }

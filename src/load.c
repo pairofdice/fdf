@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/03 10:05:15 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/10 10:47:52 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	load_map(int fd, t_vec *map)
 		{
 			p.z = ft_atoi(*words);
 			p.c = p.z;
-			ft_putnbr(p.z);
 			vec_push(&linevec, &p);
 			words++;
 			p.x++;
@@ -42,11 +41,32 @@ int	load_map(int fd, t_vec *map)
 		vec_push(map, &linevec);
 		p.y++;
 	}
-	// print it out to make sure it worked
-
 	close(fd);
 	return (1);
 }
 
-
-
+/*
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		//line_vec = (t_vec *) &map->memory[r];
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = *(t_point *)vec_get(line_vec, k++);
+		 	// ft_putnbr(p.x);
+			// ft_putchar('-');
+			// ft_putnbr(p.y);
+			// ft_putchar('-');
+			ft_putnbr(p.z);
+			// ft_putchar('\t');
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	}
+ */

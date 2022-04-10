@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/04 15:49:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/10 12:28:59 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include <unistd.h>
 # include <math.h>
 
+# define	ON_KEYDOWN 2
+# define	ON_KEYUP 3
+# define	ON_MOUSEDN 4
+# define	ON_MOUSEUP 5
+# define	ON_MOUSEMOV 6
+# define	ON_EXPOSE 2
+# define	ON_DESTROY 17
 
 typedef struct s_point
 {
@@ -46,6 +53,17 @@ typedef struct s_frame_buffer
 	int		height;
 
 }	t_frame_buffer;
+typedef struct s_transforms
+{
+	float rot;
+	int shift_x;
+	int shift_y;
+	float scale;
+	float zscale;
+	int frame_n;
+	int auto_rotate;
+	int isometric;
+}	t_transforms;
 
 typedef struct s_context
 {
@@ -56,18 +74,24 @@ typedef struct s_context
 	int		h;
 	t_vec *map;
 	t_point *max;
+	t_transforms *t;
 }	t_context;
+
 
 int		load_map(int fd, t_vec *map);
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color);
 int		rgb_to_int(unsigned char r, unsigned char g, unsigned char b);
-void	draw_line(t_line *line, t_frame_buffer *fb, int win_w, int win_h);
-void	art_project(t_frame_buffer *fb, int win_w, int win_h);
-void	model_to_world(t_vec *map, t_point *max);
-void	world_to_view(t_vec *map, int win_w, int win_h);
-void	draw_map(t_frame_buffer* fb, t_vec *map, int win_w, int win_h, t_point *max);
-void isometric(t_vec *map);
-void rotate(t_vec *map, float rot);
-void print_map(t_vec * map);
+void	draw_line(t_line *line, t_context *ctx);
+void	background(t_frame_buffer *fb, int win_w, int win_h);
+void	model_to_world(t_point *p, t_point *max);
+void	world_to_view(t_point *p, int win_w, int win_h);
+void	draw_map(t_context *ctx);
+void	isometric(t_point *p);
+void	rotate(t_point *p, float rot);
+void	scale(t_point *p, float multiplier);
+void	zscale(t_point *p, float multiplier);
+void	translate(t_point *p, int x, int y);
+int		draw_frame(void *t);
+//void print_map(t_point *p);
 
 #endif
