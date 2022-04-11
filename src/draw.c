@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/10 23:04:19 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/11 09:43:47 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	do_transforms(t_point *p, t_context *ctx)
 	model_to_world(p, &ctx->max);
 	scale(p, ctx->t.scale);
 	zscale(p, ctx->t.zscale);
-	rotate(p, ctx->t.frame_n / 1000.0);
+	rotate(p, (ctx->t.frame_n) / 1000.0 + ctx->t.rot);
 	isometric(p);
 	world_to_view(p, ctx->w, ctx->h);
 	translate(p, ctx->t.shift_x, ctx->t.shift_y);
@@ -94,9 +94,11 @@ int	draw_frame(void *context)
 
 	ctx = (t_context *)context;
 	ctx->t.frame_n++;
-	ctx->t.frame_n++;
-	background(&ctx->fb, ctx->w, ctx->h);
-	ft_memcpy(ctx->fb.data, ctx->fb.databg, ctx->fb.bits_per_pixel * ctx->w * ctx->h / 8);
+	if (ctx->draw_bg)
+		background(&ctx->fb, ctx->w, ctx->h);
+	else
+		blank(&ctx->fb, ctx->w, ctx->h);
+	//ft_memcpy(ctx->fb.data, ctx->fb.databg, ctx->fb.bits_per_pixel * ctx->w * ctx->h / 8);
 	draw_map(context);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->fb.img, 0, 0);
 	help_text(context);

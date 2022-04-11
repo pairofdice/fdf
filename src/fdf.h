@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/10 23:36:37 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:52:20 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ typedef struct s_line
 	t_point b;
 }	t_line;
 
+typedef struct s_dims
+{
+	float	x_min;
+	float	x_max;
+	float	y_min;
+	float	y_max;
+	float	z_min;
+	float	z_max;
+	float	c_min;
+	float	c_max;
+}	t_dims;
+
 typedef struct s_frame_buffer
 {
 	void	*img;
@@ -75,16 +87,18 @@ typedef struct s_transforms
 
 typedef struct s_context
 {
-	void	*mlx;
-	void	*win;
-	t_frame_buffer fb;
+	void			*mlx;
+	void			*win;
+	t_frame_buffer	fb;
 	//t_frame_buffer fb_bg;
-	int		w;
-	int		h;
-	t_vec	map;
-	t_point max;
-	t_transforms t;
-	clock_t	tic;
+	int				w;
+	int				h;
+	t_vec			map;
+	t_point			max;
+	t_transforms	t;
+	clock_t			tic;
+	int				draw_bg;
+	t_dims			dims;
 }	t_context;
 
 
@@ -96,6 +110,7 @@ int		rgb_to_int(unsigned char r, unsigned char g, unsigned char b);
 int		argb_to_int(unsigned char a, unsigned char r, unsigned char g, unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
 void	background(t_frame_buffer *fb, int win_w, int win_h);
+void	blank(t_frame_buffer *fb, int win_w, int win_h);
 void	model_to_world(t_point *p, t_point *max);
 void	world_to_view(t_point *p, int win_w, int win_h);
 void	draw_map(t_context *ctx);
@@ -108,7 +123,11 @@ int		draw_frame(void *t);
 void	help_text(t_context *ctx);
 
 void	init_context(t_context *ctx);
-int	handle_args(int argc, char **argv, t_vec *map);
+int		handle_args(int argc, char **argv, t_vec *map);
+int		on_keypress(int key_nb, void *param);
+int		on_mouse_down(int button, int x, int y, void *param);
+int		fdf_close(t_context *vars);
+void	max_dims(t_vec *map, t_point *max);
 //void print_map(t_point *p);
 
 #endif
