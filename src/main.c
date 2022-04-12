@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 11:07:44 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:03:36 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	hook_em_up(t_context *ctx)
 {
 	mlx_loop_hook(ctx->mlx, draw_frame, ctx);
 	//mlx_key_hook(ctx->win, on_keypress, ctx);
-	// mlx_hook(ctx->win, ON_KEYDOWN, 0, on_keypress, ctx);
-	mlx_hook(ctx->win, ON_KEYDOWN, (1L<<0), on_keypress, ctx);
+	 mlx_hook(ctx->win, ON_KEYDOWN, 0, on_keypress, ctx);
+	//mlx_hook(ctx->win, ON_KEYDOWN, (1L<<0), on_keypress, ctx);
 	mlx_hook(ctx->win, 33, 0, fdf_close, ctx); // 33 on macbook air, 17 on school?
 }
 	//mlx_hook(ctx->win, ON_DESTROY, 0L, fdf_close, ctx);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/12 10:17:05 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/12 16:17:14 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC =	$Smain.c \
 		$Sload.c \
 		$Sdraw.c \
 		$Stransforms.c \
+		$Sprojections.c \
 		$Sbackground.c \
 		$Sline.c \
 		$Spixel_put_color.c \

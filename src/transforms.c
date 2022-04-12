@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transforms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 19:17:35 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:17:57 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,10 @@
 
 // 2d_x = (3d_x - 3d_z) * cos(30)
 // 2d_z = -3d_y + (3d_x + 3d_z) * sin(30)
-void isometric(t_point *p)
-{
-
-	float x = p->x;
-	float y = p->y;
-	float z = p->z;
-	p->x = (x - y) * 0.89444848138 ; //0.5235988 cos(30)
-	p->y = -z + (x + y) * 0.44717101221 ; //0.523598 sin(30)
-}
 
 	#include <stdio.h>
 void rotate(t_point *p, float rot)
 {
-
 	float x = p->x;
 	float y = p->y;
 	p->x = x * cos(rot) - y * sin(rot) ;

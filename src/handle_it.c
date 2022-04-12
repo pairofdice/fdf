@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_it.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 19:20:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:17:39 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,30 @@ int	on_keypress(int key_nb, t_context *ctx)
 	ft_putchar('\n');
  	if (key_nb == 53 || key_nb == 65307)
 		fdf_close(ctx);
-	if (key_nb == 113)
+	if (key_nb == 113 || key_nb == 12)
 		ctx->t.rot -= 128.0;
-	if (key_nb == 101)
+	if (key_nb == 101 || key_nb == 14)
 		ctx->t.rot += 128.0;
-	if (key_nb == 114)
+	if (key_nb == 114 || key_nb == 15)
 		ctx->t.scale *= 1.1;
-	if (key_nb == 102)
+	if (key_nb == 102 || key_nb == 3)
 		ctx->t.scale *= 0.9;
-	if (key_nb == 116)
+	if (key_nb == 116 || key_nb == 17)
 		ctx->t.zscale +=  0.2;
-	if (key_nb == 103)
+	if (key_nb == 103 || key_nb == 5)
 		ctx->t.zscale -=  0.2;
-	if (key_nb == 100)
+	if (key_nb == 100 || key_nb == 2)
 		ctx->t.shift_x +=  10;
-	if (key_nb == 97)
+	if (key_nb == 97 || key_nb == 0)
 		ctx->t.shift_x -=  10;
-	if (key_nb == 115)
+	if (key_nb == 115 || key_nb == 1)
 		ctx->t.shift_y +=  10;
-	if (key_nb == 119)
+	if (key_nb == 119 || key_nb == 13)
 		ctx->t.shift_y -=  10;
-	if (key_nb == 98)
+	if (key_nb == 98 || key_nb == 11)
 		switch_auto_rotation(ctx);
+/* 	if (key_nb == 98 || key_nb == 11)
+		switch_projection(ctx); */
 	return (1);
 }
 

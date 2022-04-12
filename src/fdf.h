@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 10:29:26 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:01:01 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define FDF_H
 
 #include <time.h>
-# include "../minilibx/mlx.h"
-// # include "mlx.h"
+// # include "../minilibx/mlx.h"
+# include "mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -80,7 +80,7 @@ typedef struct s_transforms
 	float zscale;
 	int frame_n;
 	int auto_rotate;
-	int isometric;
+	int projection;
 }	t_transforms;
 
 typedef struct s_context
@@ -113,6 +113,9 @@ void	model_to_world(t_point *p, t_point *max);
 void	world_to_view(t_point *p, int win_w, int win_h);
 void	draw_map(t_context *ctx);
 void	isometric(t_point *p);
+void	dimetric(t_point *p);
+void	scroll(t_point *p);
+void	top_view(t_point *p);
 void	rotate(t_point *p, float rot);
 void	scale(t_point *p, float multiplier);
 void	zscale(t_point *p, float multiplier);

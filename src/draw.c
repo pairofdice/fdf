@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 19:16:35 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:04:12 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void	do_transforms(t_point *p, t_context *ctx)
 	scale(p, ctx->t.scale);
 	zscale(p, ctx->t.zscale);
 	//rotate(p, (ctx->t.frame_n) / 1000.0 + ctx->t.rot);
-	rotate(p, ctx->t.rot / 1000.0 );
+	//rotate(p, ctx->t.rot / 1000.0 );
 	isometric(p);
+	//dimetric(p);
+	//scroll(p);
+	//top_view(p);
+	
 	world_to_view(p, ctx->w, ctx->h);
 	translate(p, ctx->t.shift_x, ctx->t.shift_y);
 }
