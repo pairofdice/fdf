@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 17:52:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 10:29:26 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ enum {
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
-	float	c;
+	double	x;
+	double	y;
+	double	z;
+	double	c;
 }	t_point;
 
 typedef struct s_line
@@ -52,9 +52,7 @@ typedef struct s_line
 
 typedef struct s_dims
 {
-	float	x_min;
 	float	x_max;
-	float	y_min;
 	float	y_max;
 	float	z_min;
 	float	z_max;
@@ -119,15 +117,18 @@ void	rotate(t_point *p, float rot);
 void	scale(t_point *p, float multiplier);
 void	zscale(t_point *p, float multiplier);
 void	translate(t_point *p, int x, int y);
-int		draw_frame(void *t);
+int		draw_frame(t_context *ctx);
 void	help_text(t_context *ctx);
 
 void	init_context(t_context *ctx);
 int		handle_args(int argc, char **argv, t_vec *map);
-int		on_keypress(int key_nb, void *param);
+int		on_keypress(int key_nb, t_context *ctx);
 int		on_mouse_down(int button, int x, int y, void *param);
+int		on_mouse_move(int x, int y, void *param);
 int		fdf_close(t_context *vars);
 void	max_dims(t_vec *map, t_point *max);
+void	max_dimss(t_context *ctx);
+void	switch_auto_rotation(t_context *ctx);
 //void print_map(t_point *p);
 
 #endif

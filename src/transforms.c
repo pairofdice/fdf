@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/08 10:55:08 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/11 19:17:35 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ void model_to_world(t_point *p, t_point *max)
 	//printf("%f %f %f \n", p->y, max->x, max->y);
 	// ft_max(max->x, max->y)
 	p->z = p->z / 155.0;
+}
+
+void	switch_auto_rotation(t_context *ctx)
+{
+	ft_putchar('H');
+	if(ctx->t.auto_rotate == 1)
+		ctx->t.auto_rotate = 0;
+	else if(ctx->t.auto_rotate == 0)
+		ctx->t.auto_rotate = -1;
+	else if(ctx->t.auto_rotate == -1)
+		ctx->t.auto_rotate = 1;
 }

@@ -1,19 +1,18 @@
 TODO:
-	antialiased lines HIGHLY OPTIONAL
 	normalize height
 	keyhooks for changing view - mouse ja key hook -> mlx_hook
-	debug line drawing
+	debug line drawing AAAGH!
 	validate input
-	parse input - color too
+	parse input - color too - optional
 	epätasainen kartta
 	empty file segfault
 	fix makefile to do libft
 DOING:
+DONE:
 	projections, transforms, rotations, translations
 	Stop editing map on transformations
 	muuta transfromit per pointiksi
 	tee transformit draw_mapissa
-DONE:
 	draw basic map
 	draw into an image
 	set up mlx
@@ -91,8 +90,10 @@ Digital Differential Analyzer
 	// $(CC) -o $@ $(CFLAGS) $(OBJ) $(LIBA)
 
 
-INT_MAX:	 2147483647
-INT_MIN:	-2147483648
+INT_MAX:
+2147483647
+-2147483648
+INT_MIN:
 
 #include <time.h>
 clock_t tic = clock();

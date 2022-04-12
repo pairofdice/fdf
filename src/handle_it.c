@@ -6,27 +6,23 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 17:57:31 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/11 19:20:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
 
-int	on_keypress(int key_nb, void *param)
+int	on_keypress(int key_nb, t_context *ctx)
 {
-	t_context *ctx;
-
-	ctx = (t_context *) param;
+	ft_putnbr(key_nb);
+	ft_putchar('\n');
  	if (key_nb == 53 || key_nb == 65307)
-	{
-		mlx_destroy_window(ctx->mlx, ctx->win);
-		exit (0);
-	}
+		fdf_close(ctx);
 	if (key_nb == 113)
-		ctx->t.rot -= M_PI / 32.0;
+		ctx->t.rot -= 128.0;
 	if (key_nb == 101)
-		ctx->t.rot += M_PI / 32.0;
+		ctx->t.rot += 128.0;
 	if (key_nb == 114)
 		ctx->t.scale *= 1.1;
 	if (key_nb == 102)
@@ -43,6 +39,8 @@ int	on_keypress(int key_nb, void *param)
 		ctx->t.shift_y +=  10;
 	if (key_nb == 119)
 		ctx->t.shift_y -=  10;
+	if (key_nb == 98)
+		switch_auto_rotation(ctx);
 	return (1);
 }
 
