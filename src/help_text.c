@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 17:13:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:21:46 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	help_text(t_context *ctx)
 	*/
 	clock_t toc;
 	toc = clock();
-	//printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
+	printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
 	
 	ctx->tic = toc;
 }
