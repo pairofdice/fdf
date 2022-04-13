@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 19:45:02 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:51:51 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ static void	draw_vert_line(t_vec *map_line,
 		transform_line(*p1, *p2, ctx);
 }
 
-static void	draw_hv_lines(t_vec *map_ln, t_vec *map_nxt, int i, t_context *ctx)
-{
-	draw_horiz_line(map_ln, i, ctx);
-	draw_vert_line(map_ln, map_nxt, i, ctx);
-}
-
 void	draw_map(t_context *ctx)
 {
 	int		x;
@@ -65,17 +59,15 @@ void	draw_map(t_context *ctx)
 		map_line = (t_vec *)vec_get(&ctx->map, y);
 		map_next = (t_vec *)vec_get(&ctx->map, y + 1);
 		x = 0;
-		if (map_next)
+		while (x < map_line->len - 1)
 		{
-			while (x < map_line->len - 1)
-			{
-				draw_hv_lines(map_line, map_next, x, ctx);
-				if (x == map_line->len - 2)
-					draw_vert_line(map_line, map_next, x + 1, ctx);
-				if (y == ctx->map.len - 2)
-					draw_horiz_line(map_next, x, ctx);
-				x++;
-			}
+			draw_horiz_line(map_line, x, ctx);
+			draw_vert_line(map_line, map_next, x, ctx);
+			if (x == map_line->len - 2)
+				draw_vert_line(map_line, map_next, x + 1, ctx);
+			if (y == ctx->map.len - 2)
+				draw_horiz_line((t_vec *)vec_get(&ctx->map, y + 1), x, ctx);
+			x++;
 		}
 		y++;
 	}
