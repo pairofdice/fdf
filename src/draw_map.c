@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 19:42:33 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:45:02 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	transform_line(t_point p1, t_point p2, t_context *ctx)
 {
-	t_line line;
+	t_line	line;
 
 	do_transforms(&p1, ctx);
 	do_transforms(&p2, ctx);
