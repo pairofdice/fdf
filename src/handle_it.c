@@ -6,18 +6,18 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 16:17:39 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:33:52 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
 
+/* 	ft_putnbr(key_nb);
+	ft_putchar('\n'); */
 int	on_keypress(int key_nb, t_context *ctx)
 {
-	ft_putnbr(key_nb);
-	ft_putchar('\n');
- 	if (key_nb == 53 || key_nb == 65307)
+	if (key_nb == 53 || key_nb == 65307)
 		fdf_close(ctx);
 	if (key_nb == 113 || key_nb == 12)
 		ctx->t.rot -= 128.0;
@@ -28,48 +28,78 @@ int	on_keypress(int key_nb, t_context *ctx)
 	if (key_nb == 102 || key_nb == 3)
 		ctx->t.scale *= 0.9;
 	if (key_nb == 116 || key_nb == 17)
-		ctx->t.zscale +=  0.2;
+		ctx->t.zscale += 0.05;
 	if (key_nb == 103 || key_nb == 5)
-		ctx->t.zscale -=  0.2;
+		ctx->t.zscale -= 0.05;
 	if (key_nb == 100 || key_nb == 2)
-		ctx->t.shift_x +=  10;
+		ctx->t.shift_x += 10;
 	if (key_nb == 97 || key_nb == 0)
-		ctx->t.shift_x -=  10;
+		ctx->t.shift_x -= 10;
 	if (key_nb == 115 || key_nb == 1)
-		ctx->t.shift_y +=  10;
+		ctx->t.shift_y += 10;
 	if (key_nb == 119 || key_nb == 13)
-		ctx->t.shift_y -=  10;
+		ctx->t.shift_y -= 10;
 	if (key_nb == 98 || key_nb == 11)
 		switch_auto_rotation(ctx);
-/* 	if (key_nb == 98 || key_nb == 11)
-		switch_projection(ctx); */
 	return (1);
 }
-
+/* 	if (key_nb == 98 || key_nb == 11)
+		switch_projection(ctx); */
 
 int	fdf_close(t_context *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
+	exit(1);
+	return (0);
+}
+
+int	on_mouse_down(int button, int x, int y, t_context *ctx)
+{
+	if (button == 2)
+		ctx->r_mouse_dn = 1;
+/* 	ft_putchar('M');
+	ft_putnbr(button); */
 	return(0);
 }
 
+int	on_mouse_move(int x, int y, t_context *ctx)
+{
+	int dx;
+	int dy;
+
+	dx = ctx->mouse_x - x;
+	dy = ctx->mouse_y + 31868 - y;
+	if (ctx->r_mouse_dn == 1)
+	{
+/* 		ft_putnbr(ctx->t.shift_x);
+		ft_putchar(' ');
+		ft_putnbr(ctx->t.shift_y);
+		ft_putchar(' ');
+		ft_putnbr(dx);
+		ft_putchar(' ');
+		ft_putnbr(dy);
+		ft_putchar(' '); */
+	 	ctx->t.shift_x -= dx;
+		ctx->t.shift_y -= dy; 
+	}
+	ctx->mouse_x = x;
+	ctx->mouse_y = y - 31868;
+
+/* 	ft_putnbr(ctx->mouse_x);
+	ft_putchar(' ');
+	ft_putnbr(ctx->mouse_y);
+	ft_putchar('\n'); */
+	return(0);
+}
+
+int	on_mouse_up(int button, int x, int y, t_context *ctx)
+{
+	if (button == 2)
+		ctx->r_mouse_dn = 0;
+	return(0);
+
+}
 /*
- int	on_mouse_down(int button, int x, int y, void *param)
-{
-	ft_putchar('M');
-	return(0);
-}
-
-int	on_mouse_up(int button, int x, int y, void *param)
-{
-
-}
-
-int	on_mouse_move(int x, int y, void *param)
-{
-
-}
 
 int fdf(void *param)
 

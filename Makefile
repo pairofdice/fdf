@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/12 16:17:14 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/13 17:19:43 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ S = src/
 SRC =	$Smain.c \
 		$Sload.c \
 		$Sdraw.c \
+		$Sdraw_map.c \
 		$Stransforms.c \
 		$Sprojections.c \
 		$Sbackground.c \

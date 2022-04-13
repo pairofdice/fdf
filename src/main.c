@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 12:03:36 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 12:22:07 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,12 @@ void	print_map(t_vec * map)
 void	hook_em_up(t_context *ctx)
 {
 	mlx_loop_hook(ctx->mlx, draw_frame, ctx);
-	//mlx_key_hook(ctx->win, on_keypress, ctx);
-	 mlx_hook(ctx->win, ON_KEYDOWN, 0, on_keypress, ctx);
-	//mlx_hook(ctx->win, ON_KEYDOWN, (1L<<0), on_keypress, ctx);
-	mlx_hook(ctx->win, 33, 0, fdf_close, ctx); // 33 on macbook air, 17 on school?
-}
-	//mlx_hook(ctx->win, ON_DESTROY, 0L, fdf_close, ctx);
-	//mlx_hook(ctx->win, ON_MOUSEMOVE, 0, on_mouse_move, ctx);
-/*
+	mlx_hook(ctx->win, ON_KEYDOWN, 1L<<0, on_keypress, ctx);
+	mlx_hook(ctx->win, ON_DESTROY, 0, fdf_close, ctx);
+	mlx_hook(ctx->win, ON_MOUSEMOVE, 0, on_mouse_move, ctx);
 	mlx_hook(ctx->win, ON_MOUSEDOWN, 0, on_mouse_down, ctx);
-	mlx_hook(ctx->win, ON_MOUSEUP, 0, on_mouse_up, ctx); */
-
+	mlx_hook(ctx->win, ON_MOUSEUP, 0, on_mouse_up, ctx); 
+}
 	// usage
 	// mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
 
@@ -93,28 +88,3 @@ int	main(int argc, char **argv)
 
 	return (0);
 }
-
-/*
-#include <mlx.h>
-
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
-int	close(int keycode, t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
-}
-
-int	main(void)
-{
-	t_vars	vars;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
-	mlx_loop(vars.mlx);
-}
-*/

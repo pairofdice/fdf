@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 17:01:01 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 12:40:50 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ enum {
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
-	ON_DESTROY = 17
+	ON_DESTROY = 33
 };
 
 # define	WIN_W 900
@@ -97,6 +97,9 @@ typedef struct s_context
 	clock_t			tic;
 	int				draw_bg;
 	t_dims			dims;
+	int	mouse_x;
+	int	mouse_y;
+	int	r_mouse_dn;
 }	t_context;
 
 
@@ -126,8 +129,9 @@ void	help_text(t_context *ctx);
 void	init_context(t_context *ctx);
 int		handle_args(int argc, char **argv, t_vec *map);
 int		on_keypress(int key_nb, t_context *ctx);
-int		on_mouse_down(int button, int x, int y, void *param);
-int		on_mouse_move(int x, int y, void *param);
+int		on_mouse_down(int button, int x, int y, t_context *ctx);
+int		on_mouse_up(int button, int x, int y, t_context *ctx);
+int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dims(t_vec *map, t_point *max);
 void	max_dimss(t_context *ctx);
