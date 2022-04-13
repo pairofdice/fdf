@@ -6,14 +6,16 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 17:23:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:42:33 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_connection(t_point p1, t_point p2, t_line line, t_context *ctx)
+static void	transform_line(t_point p1, t_point p2, t_context *ctx)
 {
+	t_line line;
+
 	do_transforms(&p1, ctx);
 	do_transforms(&p2, ctx);
 	line.a = p1;
@@ -21,35 +23,33 @@ void	draw_connection(t_point p1, t_point p2, t_line line, t_context *ctx)
 	draw_line(&line, ctx);
 }
 
-void	draw_horiz_line(t_vec *map_line, int i, t_context *ctx)
+static void	draw_horiz_line(t_vec *map_line, int i, t_context *ctx)
 {
 	t_point	*p1;
 	t_point	*p2;
-	t_line	line;
 
 	p1 = (t_point *) vec_get(map_line, i);
 	p2 = (t_point *) vec_get(map_line, i + 1);
 	if (p1 && p2)
-		draw_connection(*p1, *p2, line, ctx);
+		transform_line(*p1, *p2, ctx);
 }
 
-void	draw_vert_line(t_vec *map_line,
+static void	draw_vert_line(t_vec *map_line,
 			t_vec *map_next, int i, t_context *ctx)
 {
 	t_point	*p1;
 	t_point	*p2;
-	t_line	line;
 
 	p1 = (t_point *) vec_get(map_line, i);
 	p2 = (t_point *) vec_get(map_next, i);
 	if (p1 && p2)
-		draw_connection(*p1, *p2, line, ctx);
+		transform_line(*p1, *p2, ctx);
 }
 
-void	draw_hv_lines(t_vec *map_line, t_vec *map_next, int i, t_context *ctx)
+static void	draw_hv_lines(t_vec *map_ln, t_vec *map_nxt, int i, t_context *ctx)
 {
-	draw_horiz_line(map_line, i, ctx);
-	draw_vert_line(map_line, map_next, i, ctx);
+	draw_horiz_line(map_ln, i, ctx);
+	draw_vert_line(map_ln, map_nxt, i, ctx);
 }
 
 void	draw_map(t_context *ctx)
