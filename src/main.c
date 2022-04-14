@@ -13,22 +13,11 @@
 /* #include "../minilibx/mlx.h" */
 #include "fdf.h"
 #include <stdlib.h>
-
 #include <unistd.h>
-
-//# include "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h"
 
 // ILLEGAL!!!!
 #include <stdio.h>
 #include <math.h>
-
-int clamp(int nb, int boundary)
-{
-	if (nb > boundary)
-		nb = boundary;
-	return (nb);
-}
-
 
 void	print_map(t_vec * map)
 {
@@ -47,20 +36,11 @@ void	print_map(t_vec * map)
 		while (k < line_vec->len)
 		{
 			p = *(t_point *)vec_get(line_vec, k++);
-
 			printf("[%4.1f %4.1f %4.1f]", p.x, p.y, p.z);
-
 		}
 		printf("\n");
 	}
 }
-
-/* int fdf_close(int keycode, t_context *ctx)
-{
-	mlx_destroy_window(ctx->mlx, ctx->win);
-	return (0);
-} */
-
 
 void	hook_em_up(t_context *ctx)
 {
@@ -81,10 +61,8 @@ int	main(int argc, char **argv)
 	handle_args(argc, argv, &ctx.map);
 	max_dims(&ctx.map, &ctx.max);
 	init_context(&ctx);
-	background(&ctx.fb, ctx.w, ctx.h);
+	// background(&ctx.fb, ctx.w, ctx.h);
 	hook_em_up(&ctx);
 	mlx_loop(ctx.mlx);
-
-
 	return (0);
 }

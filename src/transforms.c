@@ -17,16 +17,16 @@
 // 2d_z = -3d_y + (3d_x + 3d_z) * sin(30)
 
 	#include <stdio.h>
-void rotate(t_point *p, float rot)
+void	rotate(t_point *p, float rot)
 {
 	float x = p->x;
 	float y = p->y;
-	p->x = x * cos(rot) - y * sin(rot) ;
-	p->y = y * cos(rot) + x * sin(rot) ;
+	p->x = x * cos(rot) - y * sin(rot);
+	p->y = y * cos(rot) + x * sin(rot);
 	// printf("\n ??? %f", p->y);
 }
 
-void scale(t_point *p, float multiplier)
+void	scale(t_point *p, float multiplier)
 {
 	p->x *= multiplier;
 	p->y *= multiplier;
@@ -34,23 +34,23 @@ void scale(t_point *p, float multiplier)
 }
 
 
-void translate(t_point *p, int x, int y)
+void	translate(t_point *p, int x, int y)
 {
 	p->x += x;
 	p->y += y;
 }
 
 
-void zscale(t_point *p, float multiplier)
+void	zscale(t_point *p, float multiplier)
 {
-	p->z *= multiplier ;
+	p->z *= multiplier;
 }
 
-void world_to_view(t_point *p, int win_w, int win_h)
+void	world_to_view(t_point *p, int win_w, int win_h)
 {
 
-	p->x = ((float)win_w/2.0) + p->x * (win_w / 4.0 ) ;
-	p->y = ((float)win_h/2.0) + p->y * (win_h / 4.0 ) ;
+	p->x = ((float)win_w/2.0) + p->x * (win_w / 4.0 );
+	p->y = ((float)win_h/2.0) + p->y * (win_h / 4.0 );
 
 	//printf("%f \n", p->y);
 /* 	p->x = p->x * 200.0;
@@ -62,10 +62,10 @@ void world_to_view(t_point *p, int win_w, int win_h)
 	normalize map coordinates from (0, something) to (-1, 1)
  */
 
-void model_to_world(t_point *p, t_point *max)
+void	model_to_world(t_point *p, t_point *max)
 {
-	p->x = p->x / (max->x  - 1 ) * 2 - 1;
-	p->y = p->y / (max->y - 1 ) * 2 - 1 ;
+	p->x = p->x / (max->x - 1 ) * 2 - 1;
+	p->y = p->y / (max->y - 1 ) * 2 - 1;
 	//printf("%f %f %f \n", p->y, max->x, max->y);
 	// ft_max(max->x, max->y)
 	p->z = p->z / 155.0;

@@ -134,7 +134,7 @@ int		on_mouse_up(int button, int x, int y, t_context *ctx);
 int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dims(t_vec *map, t_point *max);
-void	max_dimss(t_context *ctx);
+void	set_z_range(t_context *ctx, int i);
 void	switch_auto_rotation(t_context *ctx);
 //void print_map(t_point *p);
 

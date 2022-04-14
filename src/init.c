@@ -26,18 +26,17 @@ void	init_context(t_context *ctx)
 	ctx->t.scale = 1;
 	ctx->t.zscale = 1;
 	ctx->t.auto_rotate = 1;
-
 	ctx->w = WIN_W;
 	ctx->h = WIN_H;
-	ctx->draw_bg = 0;
-	//max_dimss(ctx);
-
+	ctx->draw_bg = 1;
+	ctx->dims.z_min = 2147483647;
+	ctx->dims.z_max = -2147483648;
 }
 
 void	max_dims(t_vec *map, t_point *max)
 {
-	int i;
-	t_vec line;
+	int		i;
+	t_vec	line;
 
 	i = 0;
 	max->y = map->len;
@@ -52,44 +51,10 @@ void	max_dims(t_vec *map, t_point *max)
 	}
 }
 
-/*
-void	check_line_z(t_vec *line, t_dims *dims)
+void	set_z_range(t_context *ctx, int i)
 {
-	int		j;
-	t_point	p;
-
- 	dims->z_min = 2147483647;
-	dims->z_max = -2147483648;
-	j = 0;
-	while (j < line->len)
-	{
-		p = *(t_point *)vec_get(line, j);
-		if (dims->z_max < p.z)
-			dims->z_max = p.z;
-		if (dims->x_max < p.z)
-			dims->x_max = p.z;
-		j++;
-	}
+	if(i < ctx->dims.z_min)
+		ctx->dims.z_min = i;
+	if(i > ctx->dims.z_max)
+		ctx->dims.z_max = i;
 }
-
-void	max_dimss(t_context *ctx)
-{
-	int		i;
-	t_vec	line;
-
-	i = 0;
-	dims->y_max = map->len;
-	dims->x_max = 0;
-	while (i < map->len)
-	{
-		line = *(t_vec *)vec_get(ctx->map, i);
-		 if (dims->x_max <  line.len)
-		 	dims->x_max = line.len;
-		check_line_z(&line, dims);
-		i++;
-	}
-} */
-/*
-2147483647
--2147483648
- */

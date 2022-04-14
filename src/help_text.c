@@ -37,13 +37,6 @@ void	help_text(t_context *ctx)
 	hints[5] = 0;
 	put_hints(ctx, hints);
 
-/*
-	mlx_string_put(ctx->mlx, ctx->win, 20, 20, 0xFFFFFF, "Move:  W, A, S, D" );
-	mlx_string_put(ctx->mlx, ctx->win, 20, 30, 0xFFFFFF, "Zoom:  R, F" );
-	mlx_string_put(ctx->mlx, ctx->win, 20, 40, 0xFFFFFF, "Height: T, G" );
-	mlx_string_put(ctx->mlx, ctx->win, 20, 50, 0xFFFFFF, "Rotate: Q, E" );
-	mlx_string_put(ctx->mlx, ctx->win, 20, 50, 0xFFFFFF, "Auto-rot: B" );
-	*/
 	clock_t toc;
 	toc = clock();
 	if (toc % CLOCKS_PER_SEC == 0)
@@ -51,11 +44,4 @@ void	help_text(t_context *ctx)
 	
 	ctx->tic = toc;
 }
-	//ft_putstr(ft_itoa((int)(toc - ctx->tic )/ CLOCKS_PER_SEC));
-	//ft_putchar('\n');
-	/*
-	mlx_string_put (ctx->mlx, ctx->win, 20, 20, 0xFFFFFF, "" );
-	mlx_string_put (ctx->mlx, ctx->win, 20, 20, 0xFFFFFF, "" );
-	mlx_string_put (ctx->mlx, ctx->win, 20, 20, 0xFFFFFF, "" );
-	mlx_string_put (ctx->mlx, ctx->win, 20, 20, 0xFFFFFF, "" );
-	*/
+

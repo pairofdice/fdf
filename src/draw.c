@@ -30,9 +30,10 @@ void	do_transforms(t_point *p, t_context *ctx)
 int	points_in_win(t_line *l, int win_w, int win_h)
 {
 	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= win_w || l->a.y >= win_h)
-		return (0);
-	if (l->b.x < 0 || l->b.y < 0 || l->b.x >= win_w || l->b.y >= win_h)
-		return (0);
+	{
+		if (l->b.x < 0 || l->b.y < 0 || l->b.x >= win_w || l->b.y >= win_h)
+			return (0);
+	}
 	return (1);
 }
 
