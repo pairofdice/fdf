@@ -3,34 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 17:41:58 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/14 23:15:33 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int	handle_args(int argc, char **argv, t_vec *map)
+int	handle_args(int argc, char **argv, t_context *ctx)
 {
 	int	fd;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
+		if (fd < 0)
+			exit(1);
 	}
 	else
 	{
-		ft_putstr("Usage: ./fdf <map>");
-		fd = open("maps/10-2.fdf", O_RDONLY);
+		ft_putstr("Usage: ./fdf <map>\n");
+		exit(1);
 	}
-	load_map(fd, map);
+	load_map(fd, ctx);
 	return (1);
 }
 
-int	load_map(int fd, t_vec *map)
+int	load_map(int fd, t_context *ctx)
 {
 	char	*line;
 	char	**words;
@@ -40,7 +42,7 @@ int	load_map(int fd, t_vec *map)
 	int		x;
 	int		y;
 
-	vec_new(map, BUFF_SIZE * 2, sizeof(t_vec));
+	vec_new(&ctx->map, BUFF_SIZE * 2, sizeof(t_vec));
 	p.y = 0;
 	while (get_next_line(fd, &line))
 	{
@@ -51,19 +53,20 @@ int	load_map(int fd, t_vec *map)
 		{
 			p.z = ft_atoi(*words);
 			p.c = p.z;
+
 			vec_push(&linevec, &p);
 			p.x++;
 			words++;
 		}
-		vec_push(map, &linevec);
+		if (linevec.len > 0)
+			vec_push(&ctx->map, &linevec);
 		p.y++;
 	}
 	close(fd);
 	return (1);
 }
 
-/*
-	t_vec	*line_vec;
+	/* t_vec	*line_vec;
 	size_t	r;
 	r = 0;
 	 while (r < map->len)
@@ -85,5 +88,6 @@ int	load_map(int fd, t_vec *map)
 			ft_putchar(' ');
 		}
 		ft_putchar('\n');
-	}
- */
+	} */
+
+

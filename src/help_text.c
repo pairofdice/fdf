@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   help_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 12:26:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 10:55:47 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
+
 
 void put_hints(t_context *ctx, char **hints)
 {
@@ -27,21 +27,24 @@ void put_hints(t_context *ctx, char **hints)
 }
 void	help_text(t_context *ctx)
 {
-	char *hints[7];
+	char *hints[10];
 
 	hints[0] = "Move:     W, A, S, D";
 	hints[1] = "Zoom:     R, F";
 	hints[2] = "Height:   T, G";
 	hints[3] = "Rotate:   Q, E";
 	hints[4] = "Auto-rot: B";
-	hints[5] = 0;
+	hints[5] = "Project.: P";
+	hints[6] = "Persp.:   O";
+	hints[7] = "Reset:    Z";
+	hints[8] = 0;
 	put_hints(ctx, hints);
 
 	clock_t toc;
 	toc = clock();
-	if (toc % CLOCKS_PER_SEC == 0)
-		printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
-	
+
+	//printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
+
 	ctx->tic = toc;
 }
 

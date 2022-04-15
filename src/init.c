@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:15:47 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/12 11:09:08 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 08:24:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,92 @@ void	init_context(t_context *ctx)
 	ctx->t.shift_y = 0;
 	ctx->t.scale = 1;
 	ctx->t.zscale = 1;
-	ctx->t.auto_rotate = 1;
+	ctx->t.auto_rotate = 0;
 	ctx->w = WIN_W;
 	ctx->h = WIN_H;
 	ctx->draw_bg = 1;
-	ctx->dims.z_min = 2147483647;
-	ctx->dims.z_max = -2147483648;
+	ctx->dims.z_min = 2147483647.0;
+	ctx->dims.z_max = -2147483648.0;
+	ctx->t.projection = NUM_PROJ;
+	ctx->t.perspective = 1;
 }
 
-void	max_dims(t_vec *map, t_point *max)
+void	reset(t_context *ctx)
+{
+	ctx->t.rot = 0;
+	ctx->t.shift_x = 0;
+	ctx->t.shift_y = 0;
+	ctx->t.scale = 1;
+	ctx->t.zscale = 1;
+	ctx->t.auto_rotate = 0;
+	ctx->draw_bg = 1;
+	ctx->t.projection = NUM_PROJ;
+	ctx->t.perspective = -1;
+}
+
+/*
+void	model_to_world(t_context *ctx)
 {
 	int		i;
+	int		j;
+	t_point *p;
 	t_vec	line;
 
 	i = 0;
-	max->y = map->len;
-	max->x = 0;
-	while (i < map->len)
+	while (i < ctx->map.len)
 	{
-		line = *(t_vec *)vec_get(map, i);
-
-		 if ( max->x <  line.len)
-		 	max->x = line.len;
+		line = *(t_vec *)vec_get(&ctx->map, i);
+		j = 0;
+		while (j < line.len)
+		{
+			p = (t_point *)vec_get(&line, j);
+			model_to_world_per_point(p, ctx);
+			j++;
+		}
 		i++;
+	}
+} */
+
+void	set_z_range(t_context *ctx, float i)
+{
+		ft_putnbr(ctx->dims.z_min);
+		ft_putchar('-');
+	if(i < ctx->dims.z_min)
+	{
+		ctx->dims.z_min = i;
+	}
+	if(i > ctx->dims.z_max)
+	{
+		ft_putchar('Z');
+		ctx->dims.z_max = i;
 	}
 }
 
-void	set_z_range(t_context *ctx, int i)
+void	max_dims(t_context *ctx)
 {
-	if(i < ctx->dims.z_min)
-		ctx->dims.z_min = i;
-	if(i > ctx->dims.z_max)
-		ctx->dims.z_max = i;
+	int		i;
+	int		j;
+	t_point *p;
+	t_vec	line;
+
+	i = 0;
+	ctx->dims.h = ctx->map.len;
+	ctx->dims.w = 0;
+	while (i < ctx->map.len)
+	{
+		line = *(t_vec *)vec_get(&ctx->map, i);
+		if (ctx->dims.w <  line.len)
+		 	ctx->dims.w = line.len;
+		j = 0;
+		while (j < line.len)
+		{
+			p = (t_point *)vec_get(&line, j);
+			set_z_range(ctx, p->z);
+			color_spread(ctx, p);
+			model_to_world_per_point(p, ctx);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

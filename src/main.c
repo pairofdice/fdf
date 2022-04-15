@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 12:22:07 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 11:07:43 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ void	hook_em_up(t_context *ctx)
 	mlx_hook(ctx->win, ON_DESTROY, 0, fdf_close, ctx);
 	mlx_hook(ctx->win, ON_MOUSEMOVE, 0, on_mouse_move, ctx);
 	mlx_hook(ctx->win, ON_MOUSEDOWN, 0, on_mouse_down, ctx);
-	mlx_hook(ctx->win, ON_MOUSEUP, 0, on_mouse_up, ctx); 
+	mlx_hook(ctx->win, ON_MOUSEUP, 0, on_mouse_up, ctx);
 }
-	// usage
-	// mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
 
 int	main(int argc, char **argv)
 {
 	t_context	ctx;
 
-	handle_args(argc, argv, &ctx.map);
-	max_dims(&ctx.map, &ctx.max);
+	handle_args(argc, argv, &ctx);
 	init_context(&ctx);
-	// background(&ctx.fb, ctx.w, ctx.h);
+	max_dims(&ctx);
+	printf("\nmin max:%f %f\n", ctx.dims.z_min, ctx.dims.z_max);
+	// printf("\nlerp 42, 69, 3, 10: %f \n", interpolate(42, 69, 3, 10));
+	//model_to_world(&ctx);
 	hook_em_up(&ctx);
 	mlx_loop(ctx.mlx);
 	return (0);

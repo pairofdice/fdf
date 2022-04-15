@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 12:40:50 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 11:00:41 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 # define FDF_H
 
 #include <time.h>
-// # include "../minilibx/mlx.h"
-# include "mlx.h"
+ # include "../minilibx/mlx.h"
+//# include "mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
+# include <stdlib.h>
+
+#include <stdio.h>
 
 enum {
 	ON_KEYDOWN = 2,
@@ -35,6 +38,7 @@ enum {
 
 # define	WIN_W 900
 # define	WIN_H 900
+# define	NUM_PROJ 6
 
 typedef struct s_point
 {
@@ -44,6 +48,13 @@ typedef struct s_point
 	double	c;
 }	t_point;
 
+typedef struct s_color
+{
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+}	t_color;
+
 typedef struct s_line
 {
 	t_point a;
@@ -52,8 +63,8 @@ typedef struct s_line
 
 typedef struct s_dims
 {
-	float	x_max;
-	float	y_max;
+	float	w;
+	float	h;
 	float	z_min;
 	float	z_max;
 	float	c_min;
@@ -81,6 +92,7 @@ typedef struct s_transforms
 	int frame_n;
 	int auto_rotate;
 	int projection;
+	int	perspective;
 }	t_transforms;
 
 typedef struct s_context
@@ -92,7 +104,7 @@ typedef struct s_context
 	int				w;
 	int				h;
 	t_vec			map;
-	t_point			max;
+	// t_point			max;
 	t_transforms	t;
 	clock_t			tic;
 	int				draw_bg;
@@ -103,16 +115,17 @@ typedef struct s_context
 }	t_context;
 
 
-int		load_map(int fd, t_vec *map);
+int		load_map(int fd, t_context *ctx);
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color);
 void	save_bg(t_frame_buffer *fb, int x, int y, int color);
 void	checked_pixel_put(t_frame_buffer *fb, int x, int y, int color);
 int		rgb_to_int(unsigned char r, unsigned char g, unsigned char b);
 int		argb_to_int(unsigned char a, unsigned char r, unsigned char g, unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
-void	background(t_frame_buffer *fb, int win_w, int win_h);
+void	colorslide(t_frame_buffer *fb, int win_w, int win_h);
 void	blank(t_frame_buffer *fb, int win_w, int win_h);
-void	model_to_world(t_point *p, t_point *max);
+void	model_to_world(t_context *ctx);
+void	model_to_world_per_point(t_point *p, t_context *ctx);
 void	world_to_view(t_point *p, int win_w, int win_h);
 void	draw_map(t_context *ctx);
 void	isometric(t_point *p);
@@ -120,22 +133,29 @@ void	dimetric(t_point *p);
 void	scroll(t_point *p);
 void	top_view(t_point *p);
 void	rotate(t_point *p, float rot);
-void	scale(t_point *p, float multiplier);
-void	zscale(t_point *p, float multiplier);
+void	scale(t_point *p, float gen_multiplier, float height_multiplier);
 void	translate(t_point *p, int x, int y);
 int		draw_frame(t_context *ctx);
 void	help_text(t_context *ctx);
 
 void	init_context(t_context *ctx);
-int		handle_args(int argc, char **argv, t_vec *map);
+int		handle_args(int argc, char **argv, t_context *ctx);
 int		on_keypress(int key_nb, t_context *ctx);
 int		on_mouse_down(int button, int x, int y, t_context *ctx);
 int		on_mouse_up(int button, int x, int y, t_context *ctx);
 int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
-void	max_dims(t_vec *map, t_point *max);
-void	set_z_range(t_context *ctx, int i);
+void	max_dims(t_context *ctx);
+void	set_z_range(t_context *ctx, float i);
 void	switch_auto_rotation(t_context *ctx);
+void	do_transforms(t_point *p, t_context *ctx);
+void	project(t_context *ctx, t_point *p);
+void	switch_projection(t_context *ctx);
+void	reset(t_context *ctx);
+void	perspective(t_point *p);
+int		points_in_window(t_line *l, t_context *ctx);
+void	color_spread(t_context *ctx, t_point *p);
+float	interpolate(float a, float b, int i, int steps);
 //void print_map(t_point *p);
 
 #endif

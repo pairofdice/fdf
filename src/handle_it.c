@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   handle_it.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 19:33:52 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 08:12:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdlib.h>
 
-/* 	ft_putnbr(key_nb);
-	ft_putchar('\n'); */
+
 int	on_keypress(int key_nb, t_context *ctx)
 {
+	ft_putnbr(key_nb);
+	ft_putchar('\n');
 	if (key_nb == 53 || key_nb == 65307)
 		fdf_close(ctx);
 	if (key_nb == 113 || key_nb == 12)
@@ -41,6 +41,16 @@ int	on_keypress(int key_nb, t_context *ctx)
 		ctx->t.shift_y -= 10;
 	if (key_nb == 98 || key_nb == 11)
 		switch_auto_rotation(ctx);
+	if (key_nb == 112 || key_nb == 112)
+	{
+		ctx->t.projection++;
+		ctx->t.projection %= NUM_PROJ + 1;
+	}
+	if (key_nb == 122 || key_nb == 122)
+		reset(ctx);
+/* 	if (key_nb == 111 || key_nb == 111)
+		ctx->t.perspective *= -1; */
+
 	return (1);
 }
 /* 	if (key_nb == 98 || key_nb == 11)
@@ -80,7 +90,7 @@ int	on_mouse_move(int x, int y, t_context *ctx)
 		ft_putnbr(dy);
 		ft_putchar(' '); */
 	 	ctx->t.shift_x -= dx;
-		ctx->t.shift_y -= dy; 
+		ctx->t.shift_y -= dy;
 	}
 	ctx->mouse_x = x;
 	ctx->mouse_y = y - 31868;

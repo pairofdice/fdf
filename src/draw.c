@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/13 17:28:44 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 08:18:24 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,30 @@
 
 void	do_transforms(t_point *p, t_context *ctx)
 {
-	model_to_world(p, &ctx->max);
-	scale(p, ctx->t.scale);
-	zscale(p, ctx->t.zscale);
-	//rotate(p, (ctx->t.frame_n) / 1000.0 + ctx->t.rot);
+	scale(p, ctx->t.scale, ctx->t.zscale);
 	rotate(p, ctx->t.rot / 1000.0);
-	isometric(p);
-	//dimetric(p);
-	//scroll(p);
-	//top_view(p);
+	project(ctx, p);
+
 	world_to_view(p, ctx->w, ctx->h);
 	translate(p, ctx->t.shift_x, ctx->t.shift_y);
 }
 
-int	points_in_win(t_line *l, int win_w, int win_h)
+int	points_in_window(t_line *l, t_context *ctx)
 {
-	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= win_w || l->a.y >= win_h)
-	{
-		if (l->b.x < 0 || l->b.y < 0 || l->b.x >= win_w || l->b.y >= win_h)
-			return (0);
-	}
+	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= ctx->w || l->a.y >= ctx->h)
+		return (0);
+	if (l->b.x < 0 || l->b.y < 0 || l->b.x >= ctx->w || l->b.y >= ctx->h)
+		return (0);
+
 	return (1);
 }
 
 int	draw_frame(t_context *ctx)
 {
 	ctx->t.frame_n++;
-	ctx->t.rot += ctx->t.auto_rotate;
+	ctx->t.rot += ctx->t.auto_rotate * 5;
 	if (ctx->draw_bg)
-		background(&ctx->fb, ctx->w, ctx->h);
+		colorslide(&ctx->fb, ctx->w, ctx->h);
 	else
 		blank(&ctx->fb, ctx->w, ctx->h);
 	if (ctx->map.len > 0)
@@ -51,5 +46,5 @@ int	draw_frame(t_context *ctx)
 	help_text(ctx);
 	return (1);
 }
-//ft_memcpy(ctx->fb.data, ctx->fb.databg, 
+//ft_memcpy(ctx->fb.data, ctx->fb.databg,
 //		ctx->fb.bits_per_pixel * ctx->w * ctx->h / 8);

@@ -6,13 +6,13 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:00:29 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/11 11:07:06 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:17:46 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	background(t_frame_buffer *fb, int win_w, int win_h)
+void	colorslide(t_frame_buffer *fb, int win_w, int win_h)
 {
 	int	y;
 	int	x;
