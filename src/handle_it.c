@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_it.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:04:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:52:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	on_keypress(int key_nb, t_context *ctx)
 		ctx->t.scale *= 1.1;
 	if (key_nb == 102 || key_nb == 3)
 		ctx->t.scale *= 0.9;
-	if (key_nb == 116 || key_nb == 17)
+ 	if (key_nb == 116 || key_nb == 17)
 		ctx->t.zscale += 0.05;
 	if (key_nb == 103 || key_nb == 5)
 		ctx->t.zscale -= 0.05;

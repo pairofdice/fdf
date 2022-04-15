@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/13 17:19:43 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/15 18:53:19 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC =	$Smain.c \
 
 
 
-HDR = fdf.h
+HDR = fdf.h keys.h
 OBJ = $(SRC:%.c=%.o)
 LIBFT = libft/
 LIBA = libft/libft.a

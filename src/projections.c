@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:36:42 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 13:22:59 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:20:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	isometric(t_point *p)
 	float y;
 	float z;
 
-	x = p->x;
+ 	x = p->x;
 	y = p->y;
 	z = p->z;
-	p->x = (x - y) * 0.8660 ;
-	p->y = -z + (x + y) * 0.5 ;
+	p->x = (x - y) * 0.8660;
+	p->y = -z + (x + y) * 0.5;
 }
 
 void	dimetric(t_point *p)

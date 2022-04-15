@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 13:39:17 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:52:41 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define FDF_H
 
 #include <time.h>
+#include "keys.h"
 # include "../minilibx/mlx.h"
 //# include "mlx.h"
 # include "../libft/libft.h"
@@ -26,6 +27,7 @@
 
 #include <stdio.h>
 
+/*
 enum {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -39,6 +41,7 @@ enum {
 # define	WIN_W 900
 # define	WIN_H 900
 # define	NUM_PROJ 6
+ */
 
 typedef struct s_point
 {
