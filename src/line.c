@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:05:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 13:04:05 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:39:12 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,28 @@ void	draw_line(t_line *line, t_context *ctx)
 	i = 0;
 	clr.g = 125 - sin(((float)line->a.y + ctx->t.frame_n) / 50.0) * 80 + deltas.y * (float)i / -100;
 	clr.b = 125 + sin(((float)line->a.x + ctx->t.frame_n) / 60.0) * 80 + deltas.x * (float)i / -100;
-	while (i <= steps)
+	if (!neither_point_in_window(line, ctx))
+	{
+		while (i <= steps)
+		{
+			checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
+			//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
+			p.x += deltas.x;
+			p.y += deltas.y;
+			p.c += deltas.c;
+			i++;
+		}
+	} else if (points_in_window(line, ctx))
 	{
 
-		//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
-		checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
-		p.x += deltas.x;
-		p.y += deltas.y;
-		p.c += deltas.c;
-		i++;
+		while (i <= steps)
+		{
+			checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
+			//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
+			p.x += deltas.x;
+			p.y += deltas.y;
+			p.c += deltas.c;
+			i++;
+		}
 	}
 }

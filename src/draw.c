@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:08:22 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:37:17 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,22 @@ void	do_transforms(t_point *p, t_context *ctx)
 	translate(p, ctx->t.shift_x, ctx->t.shift_y);
 }
 
+int	neither_point_in_window(t_line *l, t_context *ctx)
+{
+	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= ctx->w || l->a.y >= ctx->h)
+	{
+		if (l->b.x < 0 || l->b.y < 0 || l->b.x >= ctx->w || l->b.y >= ctx->h)
+			return (1);
+	}
+	return (0);
+}
+
 int	points_in_window(t_line *l, t_context *ctx)
 {
 	if (l->a.x < 0 || l->a.y < 0 || l->a.x >= ctx->w || l->a.y >= ctx->h)
-		return (0);
+			return (0);
 	if (l->b.x < 0 || l->b.y < 0 || l->b.x >= ctx->w || l->b.y >= ctx->h)
 		return (0);
-
 	return (1);
 }
 

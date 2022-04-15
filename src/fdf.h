@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:48:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:39:17 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define FDF_H
 
 #include <time.h>
-// # include "../minilibx/mlx.h"
-# include "mlx.h"
+# include "../minilibx/mlx.h"
+//# include "mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -154,6 +154,7 @@ void	switch_projection(t_context *ctx);
 void	reset(t_context *ctx);
 void	perspective(t_point *p);
 int		points_in_window(t_line *l, t_context *ctx);
+int		neither_point_in_window(t_line *l, t_context *ctx);
 void	color_spread(t_context *ctx, t_point *p);
 float	interpolate(float a, float b, int i, int steps);
 void	color_range_map(t_context *ctx);
