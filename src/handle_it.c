@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_it.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 08:12:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:04:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	on_keypress(int key_nb, t_context *ctx)
 		ctx->t.shift_y -= 10;
 	if (key_nb == 98 || key_nb == 11)
 		switch_auto_rotation(ctx);
-	if (key_nb == 112 || key_nb == 112)
+	if (key_nb == 112 || key_nb == 35)
 	{
 		ctx->t.projection++;
 		ctx->t.projection %= NUM_PROJ + 1;
 	}
-	if (key_nb == 122 || key_nb == 122)
+	if (key_nb == 122 || key_nb == 6)
 		reset(ctx);
 /* 	if (key_nb == 111 || key_nb == 111)
 		ctx->t.perspective *= -1; */

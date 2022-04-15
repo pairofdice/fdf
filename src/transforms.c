@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transforms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 00:01:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:39:44 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	model_to_world_per_point(t_point *p, t_context *ctx)
 		offset = 1 -  ctx->dims.w /  big_dim;
 		p->x = p->x / (big_dim - 1 ) * 2 - 1 + offset;
 	}
-	ctx->dims.z_min /= big_dim;
-	ctx->dims.z_max /= big_dim;
+/* 	ctx->dims.z_min /= big_dim;
+	ctx->dims.z_max /= big_dim; */
 	p->z = p->z / big_dim;
 }
 

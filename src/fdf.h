@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 11:00:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:48:41 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define FDF_H
 
 #include <time.h>
- # include "../minilibx/mlx.h"
-//# include "mlx.h"
+// # include "../minilibx/mlx.h"
+# include "mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -65,8 +65,8 @@ typedef struct s_dims
 {
 	float	w;
 	float	h;
-	float	z_min;
-	float	z_max;
+	double	z_min;
+	double	z_max;
 	float	c_min;
 	float	c_max;
 }	t_dims;
@@ -146,7 +146,7 @@ int		on_mouse_up(int button, int x, int y, t_context *ctx);
 int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dims(t_context *ctx);
-void	set_z_range(t_context *ctx, float i);
+void	set_z_range(t_context *ctx, double i);
 void	switch_auto_rotation(t_context *ctx);
 void	do_transforms(t_point *p, t_context *ctx);
 void	project(t_context *ctx, t_point *p);
@@ -156,6 +156,7 @@ void	perspective(t_point *p);
 int		points_in_window(t_line *l, t_context *ctx);
 void	color_spread(t_context *ctx, t_point *p);
 float	interpolate(float a, float b, int i, int steps);
+void	color_range_map(t_context *ctx);
 //void print_map(t_point *p);
 
 #endif

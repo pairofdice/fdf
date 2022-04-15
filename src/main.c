@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 11:07:43 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:48:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 	handle_args(argc, argv, &ctx);
 	init_context(&ctx);
 	max_dims(&ctx);
+	color_range_map(&ctx);
 	printf("\nmin max:%f %f\n", ctx.dims.z_min, ctx.dims.z_max);
 	// printf("\nlerp 42, 69, 3, 10: %f \n", interpolate(42, 69, 3, 10));
 	//model_to_world(&ctx);

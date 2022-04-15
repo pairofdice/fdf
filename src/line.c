@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:05:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 11:07:26 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:04:05 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,11 @@ void	delta_divide(t_point *deltas, int steps)
 	deltas->x /= steps;
 	deltas->y /= steps;
 	deltas->c /= steps;
+
 }
 
 
-void color_spread(t_context *ctx, t_point *p)
-{
-	//printf(" %4.2f, ", p->c);
-	p->c -= ctx->dims.z_min;/*
-	if (ctx->dims.z_max != 0) */
-	p->c /= ctx->dims.z_max ;
-	//p->c -= 1;
-	//printf("%4.2f |", p->c);
-}
+
 /*
 float	interpolate(t_point *a, t_point *deltas, int i, int steps)
 {
@@ -70,7 +63,7 @@ void	draw_line(t_line *line, t_context *ctx)
 	{
 
 		//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
-		checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c, clr.g, clr.b));
+		checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
 		p.x += deltas.x;
 		p.y += deltas.y;
 		p.c += deltas.c;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:36:42 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/14 22:09:07 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:17:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,16 @@ void	side_view(t_point *p)
 
 void	perspective(t_point *p)
 {
-	if (p->y < 2)
+	if (p->y < 2.0)
 	{
 		p->x /= 1.0 - p->y / 2.0;
 		p->z /= 1.0 - p->y / 2.0;
 		p->y /= 1.0 - p->y / 2.0;
 		p->y -= p->z;
+	}
+	else 
+	{
+		p->y = 30;
 	}
 }
 
