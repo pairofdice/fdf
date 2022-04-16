@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:34:21 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:46:45 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ int	handle_args(int argc, char **argv, t_context *ctx)
 		exit(1);
 	}
 	load_map(fd, ctx);
+	close(fd);
 	return (1);
+}
+
+static int clamp(int i, int boundary)
+{
+	if (i > boundary)
+		i = boundary;
+	if (i < -boundary)
+		i = -boundary;
+	return (i);
 }
 
 int	load_map(int fd, t_context *ctx)
@@ -39,8 +49,6 @@ int	load_map(int fd, t_context *ctx)
 	size_t	k;
 	t_point	p;
 	t_vec	linevec;
-	int		x;
-	int		y;
 
 	vec_new(&ctx->map, BUFF_SIZE * 2, sizeof(t_vec));
 	p.y = 0;
@@ -51,45 +59,15 @@ int	load_map(int fd, t_context *ctx)
 		words = ft_strsplit(line, ' ');
 		while (*words != 0)
 		{
-			p.z = ft_atoi(*words);
-			
-			p.c = p.z;
-
+			p.z = clamp(ft_atoi(*words), Z_LIMIT);
+			p.c = p.z; // Move elsewhere
 			vec_push(&linevec, &p);
 			p.x++;
 			words++;
 		}
 		if (linevec.len > 0)
 			vec_push(&ctx->map, &linevec);
-
 		p.y++;
 	}
-	close(fd);
 	return (1);
 }
-
-	/* t_vec	*line_vec;
-	size_t	r;
-	r = 0;
-	 while (r < map->len)
-	{
-		line_vec = vec_get(map, r++);
-		//line_vec = (t_vec *)map->memory[r].memory;
-		// ptr = &map->memory[r];
-		//line_vec = (t_vec *) &map->memory[r];
-		k = 0;
-		while (k < line_vec->len)
-		{
-			p = *(t_point *)vec_get(line_vec, k++);
-		 	// ft_putnbr(p.x);
-			// ft_putchar('-');
-			// ft_putnbr(p.y);
-			// ft_putchar('-');
-			ft_putnbr(p.z);
-			// ft_putchar('\t');
-			ft_putchar(' ');
-		}
-		ft_putchar('\n');
-	} */
-
-

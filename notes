@@ -99,3 +99,49 @@ INT_MIN:
 clock_t tic = clock();
 clock_t toc = clock();
 printf("Elapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
+
+
+void	print_map(t_vec * map) {
+	t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	size_t k;
+	t_point p;
+	 while (r < map->len) {
+		line_vec = vec_get(map, r++);
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		//line_vec = (t_vec *) &map->memory[r];
+		k = 0;
+		while (k < line_vec->len) {
+			p = *(t_point *)vec_get(line_vec, k++);
+			printf("[%4.1f %4.1f]", p.z, p.c); // p.x, p.y,
+		}
+		printf("\n");
+	}
+}
+
+
+	/* t_vec	*line_vec;
+	size_t	r;
+	r = 0;
+	 while (r < map->len)
+	{
+		line_vec = vec_get(map, r++);
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		//line_vec = (t_vec *) &map->memory[r];
+		k = 0;
+		while (k < line_vec->len)
+		{
+			p = *(t_point *)vec_get(line_vec, k++);
+		 	// ft_putnbr(p.x);
+			// ft_putchar('-');
+			// ft_putnbr(p.y);
+			// ft_putchar('-');
+			ft_putnbr(p.z);
+			// ft_putchar('\t');
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	} */

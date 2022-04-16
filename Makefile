@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/15 18:53:19 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/16 13:43:45 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,7 @@ SRC =	$Smain.c \
 		$Sinit.c \
 		$Shandle_it.c
 
-
-
-HDR = fdf.h keys.h
+HDR = fdf.h fdf_keys.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)
 LIBFT = libft/
 LIBA = libft/libft.a
@@ -42,7 +40,7 @@ $(NAME): $(SRC) $(OBJ) $(LIBA)
 	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS) -O3 -flto
 
 mb: $(SRC) $(OBJ) $(LIBA)
-	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -O3 -flto
+	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -O3 -flto -g -fsanitize=address
 
 # -g -fsanitize=address
 $(LIBA):

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:15:47 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:50:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:58:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_context(t_context *ctx)
 	ctx->t.auto_rotate = 0;
 	ctx->w = WIN_W;
 	ctx->h = WIN_H;
-	ctx->draw_bg = 1;
+	ctx->draw_bg = 0;
 	ctx->dims.z_min = 1024.0;
 	ctx->dims.z_max = -1024.0;
 	ctx->t.projection = NUM_PROJ;
@@ -118,16 +118,13 @@ void	color_range_map(t_context *ctx)
 		{
 			p = (t_point *)vec_get(&line, j);
 			color_spread(ctx, p);
-			printf(" %4.1f ", p->c);
 			j++;
 		}
-			printf("\n");
 		i++;
 	}
 }
 
-
-void	max_dims(t_context *ctx)
+void	max_dimensions(t_context *ctx)
 {
 	int		i;
 	int		j;
@@ -147,13 +144,9 @@ void	max_dims(t_context *ctx)
 		{
 			p = (t_point *)vec_get(&line, j);
 			set_z_range(ctx, p->z);
-			//color_spread(ctx, p);
-			
 			model_to_world_per_point(p, ctx);
 			j++;
 		}
-		//printf("\n");
 		i++;
 	}
-	
 }

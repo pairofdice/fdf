@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:05:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 17:51:50 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/15 23:06:58 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,6 @@ void	draw_line(t_line *line, t_context *ctx)
 		while (i <= steps)
 		{
 			checked_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
-			//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
-			p.x += deltas.x;
-			p.y += deltas.y;
-			p.c += deltas.c;
-			i++;
-		}
-	} else if (points_in_window(line, ctx))
-	{
-		while (i <= steps)
-		{
-			img_pixel_put(&ctx->fb, p.x, p.y, rgb_to_int(p.c * 255, clr.g, clr.b));
 			//clr.r = (float)i/(float)steps * line->b.c *20 + (float)(steps-i)/(float)steps * line->b.c *20;
 			p.x += deltas.x;
 			p.y += deltas.y;

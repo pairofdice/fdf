@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transforms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 12:39:44 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:38:39 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // 2d_x = (3d_x - 3d_z) * cos(30)
 // 2d_z = -3d_y + (3d_x + 3d_z) * sin(30)
-
+/*
 	#include <stdio.h>
 void	rotate(t_point *p, float rot)
 {
@@ -25,13 +25,29 @@ void	rotate(t_point *p, float rot)
 	p->y = y * cos(rot) + x * sin(rot);
 	// printf("\n ??? %f", p->y);
 }
-
-void	scale(t_point *p, float gen_multiplier, float height_multiplier)
+ */
+void	scale_rotate(t_point *p, t_context *ctx)
 {
-	p->x *= gen_multiplier;
+	float x;
+	float y;
+	float rotation;
+
+	rotation = ctx->t.rot / 1000.0;
+	p->x *= ctx->t.scale;
+	p->y *= ctx->t.scale;
+	p->z *= ctx->t.scale;
+	p->z *= ctx->t.zscale;
+	x = p->x;
+	y = p->y;
+	p->x = x * cos(rotation) - y * sin(rotation);
+	p->y = y * cos(rotation) + x * sin(rotation);
+}
+void	scale(t_point *p, t_context *ctx)
+{
+/* 	p->x *= gen_multiplier;
 	p->y *= gen_multiplier;
-	p->z *= gen_multiplier;
-	p->z *= height_multiplier;
+	p->z *= gen_multiplier; */
+	p->z *= ctx->t.zscale;
 }
 
 
@@ -41,24 +57,17 @@ void	translate(t_point *p, int x, int y)
 	p->y += y;
 }
 
-
 void	world_to_view(t_point *p, int win_w, int win_h)
 {
 
 	p->x = ((float)win_w/2.0) + p->x * (win_w / 4.0 );
 	p->y = ((float)win_h/2.0) + p->y * (win_h / 4.0 );
-
-	//printf("%f \n", p->y);
-/* 	p->x = p->x * 200.0;
-	p->y = p->y * 200.0; */
 	p->z = p->z * 0.5;
 }
 
 /*
 	normalize map coordinates from (0, something) to (-1, 1)
  */
-
-
 void	model_to_world_per_point(t_point *p, t_context *ctx)
 {
 	float	big_dim;
