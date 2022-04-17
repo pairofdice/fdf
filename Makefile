@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/16 13:43:45 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/17 23:41:40 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC =	$Smain.c \
 		$Spixel_put_color.c \
 		$Shelp_text.c \
 		$Sinit.c \
-		$Shandle_it.c
+		$Sinit_color.c \
+		$Shandle_it.c \
+		$Shandle_it_keys.c
 
 HDR = fdf.h fdf_keys.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)
@@ -31,16 +33,16 @@ LIBFT = libft/
 LIBA = libft/libft.a
 FRAMEWORKS = -framework OpenGL -framework AppKit
 CC = clang
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = /bin/rm -f
 
 all: $(NAME)
 
 $(NAME): $(SRC) $(OBJ) $(LIBA)
-	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS) -O3 -flto
+	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS)
 
 mb: $(SRC) $(OBJ) $(LIBA)
-	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -O3 -flto -g -fsanitize=address
+	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -flto
 
 # -g -fsanitize=address
 $(LIBA):

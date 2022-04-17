@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/16 14:46:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 22:58:17 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	handle_args(int argc, char **argv, t_context *ctx)
 	return (1);
 }
 
-static int clamp(int i, int boundary)
+static int	clamp(int i, int boundary)
 {
 	if (i > boundary)
 		i = boundary;
@@ -46,7 +46,6 @@ int	load_map(int fd, t_context *ctx)
 {
 	char	*line;
 	char	**words;
-	size_t	k;
 	t_point	p;
 	t_vec	linevec;
 
@@ -60,7 +59,7 @@ int	load_map(int fd, t_context *ctx)
 		while (*words != 0)
 		{
 			p.z = clamp(ft_atoi(*words), Z_LIMIT);
-			p.c = p.z; // Move elsewhere
+			p.c = p.z;
 			vec_push(&linevec, &p);
 			p.x++;
 			words++;

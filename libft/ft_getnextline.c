@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getnextline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:49:28 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/03/22 16:15:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:44:50 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-# include <fcntl.h>
-# include <unistd.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /*
 	Copy from storage to line for output.

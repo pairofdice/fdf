@@ -6,16 +6,15 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 22:45:59 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:52:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-void put_hints(t_context *ctx, char **hints)
+void	put_hints(t_context *ctx, char **hints)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (*hints)
@@ -28,7 +27,8 @@ void put_hints(t_context *ctx, char **hints)
 
 void	help_text(t_context *ctx)
 {
-	char *hints[10];
+	char	*hints[9];
+	clock_t	toc;
 
 	hints[0] = "Move:     W, A, S, D";
 	hints[1] = "Zoom:     R, F";
@@ -39,8 +39,7 @@ void	help_text(t_context *ctx)
 	hints[7] = "Reset:    Z";
 	hints[8] = 0;
 	put_hints(ctx, hints);
-	clock_t toc;
 	toc = clock();
-	// printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
+	printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
 	ctx->tic = toc;
 }

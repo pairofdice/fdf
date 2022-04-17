@@ -6,49 +6,17 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/16 13:52:15 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:01:47 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
 int	on_keypress(int key_nb, t_context *ctx)
 {
-	ft_putnbr(key_nb);
-	ft_putchar('\n');
-	if (key_nb == KEYMB_ESC || key_nb == 53)
-		fdf_close(ctx);
-	if (key_nb == KEYMB_Q || key_nb == 12)
-		ctx->t.rot -= 128.0;
-	if (key_nb == KEYMB_E || key_nb == 14)
-		ctx->t.rot += 128.0;
-	if (key_nb == KEYMB_R || key_nb == 15)
-		ctx->t.scale *= 1.1;
-	if (key_nb == KEYMB_F || key_nb == 3)
-		ctx->t.scale *= 0.9;
- 	if (key_nb == KEYMB_T || key_nb == 17)
-		ctx->t.zscale += 0.05;
-	if (key_nb == KEYMB_G || key_nb == 5)
-		ctx->t.zscale -= 0.05;
-	if (key_nb == KEYMB_D || key_nb == 2)
-		ctx->t.shift_x += 10;
-	if (key_nb == KEYMB_A || key_nb == 0)
-		ctx->t.shift_x -= 10;
-	if (key_nb == KEYMB_S || key_nb == 1)
-		ctx->t.shift_y += 10;
-	if (key_nb == KEYMB_W || key_nb == 13)
-		ctx->t.shift_y -= 10;
-	if (key_nb == KEYMB_B || key_nb == 11)
-		switch_auto_rotation(ctx);
-	if (key_nb == KEYMB_P || key_nb == 35)
-	{
-		ctx->t.projection++;
-		ctx->t.projection %= NUM_PROJ + 1;
-	}
-	if (key_nb == KEYMB_Z || key_nb == 6)
-		reset(ctx);
-	return (1);
+	on_keys_a(key_nb, ctx);
+	on_keys_b(key_nb, ctx);
+	return (0);
 }
 
 int	fdf_close(t_context *vars)
@@ -60,35 +28,47 @@ int	fdf_close(t_context *vars)
 
 int	on_mouse_down(int button, int x, int y, t_context *ctx)
 {
-	if (button == 2)
-		ctx->right_mouse_dn = 1;
-/* 	ft_putchar('M');
-	ft_putnbr(button); */
-	return(0);
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+	{
+		if (button == 2)
+			ctx->right_mouse_dn = 1;
+		if (button == 1)
+			ctx->left_mouse_dn = 1;
+	}
+	return (0);
 }
 
 int	on_mouse_move(int x, int y, t_context *ctx)
 {
-	int dx;
-	int dy;
+	int	dx;
+	int	dy;
 
 	dx = ctx->mouse_x - x;
 	dy = ctx->mouse_y + 31868 - y;
 	if (ctx->right_mouse_dn == 1)
 	{
-	 	ctx->t.shift_x -= dx;
+		ctx->t.shift_x -= dx;
 		ctx->t.shift_y -= dy;
+	}
+	if (ctx->left_mouse_dn == 1)
+	{
+		ctx->t.zscale -= dy;
 	}
 	ctx->mouse_x = x;
 	ctx->mouse_y = y - 31868;
-	return(0);
+	return (0);
 }
 
 int	on_mouse_up(int button, int x, int y, t_context *ctx)
 {
+	if (x || y)
+	{
+	}
 	if (button == 2)
 		ctx->right_mouse_dn = 0;
-	return(0);
+	if (button == 1)
+		ctx->left_mouse_dn = 0;
+	return (0);
 }
 /*
 

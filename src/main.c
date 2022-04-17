@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/16 11:54:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:00:28 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
+		//line_vec = (t_vec *)map->memory[r].memory;
+		// ptr = &map->memory[r];
+		//line_vec = (t_vec *) &map->memory[r];
 void	print_map(t_vec *map)
 {
 	t_vec	*line_vec;
@@ -26,14 +29,11 @@ void	print_map(t_vec *map)
 	while (r < map->len)
 	{
 		line_vec = vec_get(map, r++);
-		//line_vec = (t_vec *)map->memory[r].memory;
-		// ptr = &map->memory[r];
-		//line_vec = (t_vec *) &map->memory[r];
 		k = 0;
 		while (k < line_vec->len)
 		{
 			p = *(t_point *)vec_get(line_vec, k++);
-			printf("[%4.1f %4.1f]", p.z, p.c); // p.x, p.y,
+			printf("[%4.1f %4.1f]", p.z, p.c);
 		}
 		printf("\n");
 	}
@@ -58,7 +58,6 @@ int	main(int argc, char **argv)
 	max_dimensions(&ctx);
 	color_range_map(&ctx);
 	print_map(&ctx.map);
-	printf("\nmin max:%f %f\n", ctx.dims.z_min, ctx.dims.z_max);
 	hook_em_up(&ctx);
 	mlx_loop(ctx.mlx);
 	return (0);

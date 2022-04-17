@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:28:01 by jsaarine          #+#    #+#             */
-/*   Updated: 2021/11/06 17:57:51 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:44:08 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n < 0 )
+	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
 		if (n == -2147483648)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projections.c                                      :+:      :+:    :+:   */
+/*   projections_more.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:36:42 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:30:43 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:30:59 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	isometric(t_point *p)
+void	top_view(t_point *p)
 {
 	float	x;
 	float	y;
@@ -21,11 +21,11 @@ void	isometric(t_point *p)
 	x = p->x;
 	y = p->y;
 	z = p->z;
-	p->x = (x - y) * COS_30;
-	p->y = -z + (x + y) * SIN_30;
+	p->x = x + y / 4.0;
+	p->y = -z + y / 2.0;
 }
 
-void	dimetric(t_point *p)
+void	side_view(t_point *p)
 {
 	float	x;
 	float	y;
@@ -34,33 +34,21 @@ void	dimetric(t_point *p)
 	x = p->x;
 	y = p->y;
 	z = p->z;
-	p->x = x * COS_7 + y * COS_42 / 2.0;
-	p->y = -z + y * SIN_42 / 2.0 - x * SIN_7;
+	p->x = x + y / 2.0;
+	p->y = -z + y / 4.0;
 }
 
-void	scroll(t_point *p)
+void	perspective(t_point *p)
 {
-	float	x;
-	float	y;
-	float	z;
-
-	x = p->x;
-	y = p->y;
-	z = p->z;
-	p->x = x + 0.6 * y * COS_30;
-	p->y = -z + 0.6 * y * SIN_30;
-}
-
-void	project(t_context *ctx, t_point *p)
-{
-	void	(*fn_ptrs[NUM_PROJ])(t_point *p);
-
-	fn_ptrs[0] = isometric;
-	fn_ptrs[1] = dimetric;
-	fn_ptrs[2] = scroll;
-	fn_ptrs[3] = top_view;
-	fn_ptrs[4] = side_view;
-	fn_ptrs[5] = perspective;
-	if (ctx->t.projection < NUM_PROJ)
-		(*fn_ptrs[ctx->t.projection])(p);
+	if (p->y < 2.0)
+	{
+		p->x /= 1.0 - p->y / 2.0;
+		p->z /= 1.0 - p->y / 2.0;
+		p->y /= 1.0 - p->y / 2.0;
+		p->y -= p->z;
+	}
+	else
+	{
+		p->y = 3;
+	}
 }

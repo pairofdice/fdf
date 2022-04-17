@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/16 13:35:23 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:34:43 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		argb_to_int(unsigned char a,
 			unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
 void	colorslide(t_frame_buffer *fb, int win_w, int win_h);
-void	blank(t_frame_buffer *fb, int win_w, int win_h);
+void	blank(t_frame_buffer *fb);
 void	model_to_world(t_context *ctx);
 void	model_to_world_per_point(t_point *p, t_context *ctx);
-void	world_to_view(t_point *p, int win_w, int win_h);
+void	world_to_view(t_point *p, int x, int y);
 void	draw_map(t_context *ctx);
 void	isometric(t_point *p);
 void	dimetric(t_point *p);
@@ -57,23 +57,29 @@ void	help_text(t_context *ctx);
 void	init_context(t_context *ctx);
 int		handle_args(int argc, char **argv, t_context *ctx);
 int		on_keypress(int key_nb, t_context *ctx);
+int		on_keys_a(int key_nb, t_context *ctx);
+int		on_keys_b(int key_nb, t_context *ctx);
 int		on_mouse_down(int button, int x, int y, t_context *ctx);
 int		on_mouse_up(int button, int x, int y, t_context *ctx);
 int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dimensions(t_context *ctx);
+void	set_color(t_line *line, t_context *ctx);
 void	set_z_range(t_context *ctx, double i);
 void	switch_auto_rotation(t_context *ctx);
 void	do_transforms(t_point *p, t_context *ctx);
 void	project(t_context *ctx, t_point *p);
+void	top_view(t_point *p);
+void	side_view(t_point *p);
+void	perspective(t_point *p);
 void	switch_projection(t_context *ctx);
 void	reset(t_context *ctx);
-void	perspective(t_point *p);
 int		points_in_window(t_line *l, t_context *ctx);
 int		neither_point_in_window(t_line *l, t_context *ctx);
 void	color_spread(t_context *ctx, t_point *p);
 float	interpolate(float a, float b, int i, int steps);
 void	color_range_map(t_context *ctx);
+
 //void print_map(t_point *p);
 
 #endif

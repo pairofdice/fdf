@@ -6,14 +6,14 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/15 23:02:39 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:47:18 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_STRUCTS_H
 # define FDF_STRUCTS_H
 
-#include "fdf.h"
+# include "fdf.h"
 
 typedef struct s_point
 {
@@ -33,7 +33,9 @@ typedef struct s_color
 typedef struct s_line
 {
 	t_point	a;
+	t_color	a_color;
 	t_point	b;
+	t_color	b_color;
 }	t_line;
 
 typedef struct s_dims
@@ -86,6 +88,7 @@ typedef struct s_context
 	int				mouse_x;
 	int				mouse_y;
 	int				right_mouse_dn;
+	int				left_mouse_dn;
 }	t_context;
 
 #endif

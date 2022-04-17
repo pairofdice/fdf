@@ -145,3 +145,5 @@ void	print_map(t_vec * map) {
 		}
 		ft_putchar('\n');
 	} */
+
+	save_bg(fb, x, y, rgb_to_int(xc + 10, yc + 10, 10 + (float)(xc + yc) / (float)2));

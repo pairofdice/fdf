@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/16 14:05:31 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:38:58 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	do_transforms(t_point *p, t_context *ctx)
 {
-	//scale(p, ctx);
 	scale_rotate(p, ctx);
-	// rotate(p, ctx->t.rot / 1000.0);
 	project(ctx, p);
-	world_to_view(p, ctx->w, ctx->h);
-	translate(p, ctx->t.shift_x, ctx->t.shift_y);
+	world_to_view(p, ctx->t.shift_x, ctx->t.shift_y);
 }
 
 int	neither_point_in_window(t_line *l, t_context *ctx)
@@ -49,15 +46,15 @@ int	draw_frame(t_context *ctx)
 		colorslide(&ctx->fb, ctx->w, ctx->h);
 	else
 	{
-		blank(&ctx->fb, ctx->w, ctx->h);
-		/* if (ctx->t.frame_n % 100 == 0)
-			colorslide(&ctx->fb, ctx->w, ctx->h); */
+		blank(&ctx->fb);
 	}
 	if (ctx->map.len > 0)
 		draw_map(ctx);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->fb.img, 0, 0);
-	// help_text(ctx);
+	help_text(ctx);
 	return (1);
 }
+		/* if (ctx->t.frame_n % 100 == 0)
+			colorslide(&ctx->fb, ctx->w, ctx->h); */
 //ft_memcpy(ctx->fb.data, ctx->fb.databg,
 //		ctx->fb.bits_per_pixel * ctx->w * ctx->h / 8);

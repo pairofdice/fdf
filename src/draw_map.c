@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/14 19:51:05 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:31:20 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	transform_line(t_point p1, t_point p2, t_context *ctx)
 	do_transforms(&p2, ctx);
 	line.a = p1;
 	line.b = p2;
+	set_color(&line, ctx);
 	draw_line(&line, ctx);
 }
 
@@ -48,10 +49,10 @@ static void	draw_vert_line(t_vec *map_line,
 
 void	draw_map(t_context *ctx)
 {
-	int		x;
-	int		y;
-	t_vec	*map_line;
-	t_vec	*map_next;
+	unsigned long	x;
+	unsigned long	y;
+	t_vec			*map_next;
+	t_vec			*map_line;
 
 	y = 0;
 	while (y < ctx->map.len - 1)
