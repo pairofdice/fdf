@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:34:43 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:10:44 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int		argb_to_int(unsigned char a,
 			unsigned char g,
 			unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
-void	colorslide(t_frame_buffer *fb, int win_w, int win_h);
+void	save_colorslide(t_frame_buffer *fb);
 void	blank(t_frame_buffer *fb);
+void	copy_bg(t_frame_buffer *fb);
 void	model_to_world(t_context *ctx);
 void	model_to_world_per_point(t_point *p, t_context *ctx);
 void	world_to_view(t_point *p, int x, int y);

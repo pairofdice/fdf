@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:05:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 22:38:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:13:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_line(t_line *line, t_context *ctx)
 	t_point			deltas;
 	t_point			p;
 	int				steps;
-	t_color			clr;
+	t_color			color_deltas;
 	int				i;
 
 	set_points(&p, &deltas, line);
@@ -54,7 +54,6 @@ void	draw_line(t_line *line, t_context *ctx)
 				rgb_to_int(p.c * 255, clr.g, clr.b));
 			p.x += deltas.x;
 			p.y += deltas.y;
-			p.c += deltas.c;
 			i++;
 		}
 	}

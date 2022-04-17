@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 18:38:58 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:11:05 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ int	draw_frame(t_context *ctx)
 	ctx->t.frame_n++;
 	ctx->t.rot += ctx->t.auto_rotate * 5;
 	if (ctx->draw_bg)
-		colorslide(&ctx->fb, ctx->w, ctx->h);
+		copy_bg(&ctx->fb);
 	else
-	{
 		blank(&ctx->fb);
-	}
 	if (ctx->map.len > 0)
 		draw_map(ctx);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->fb.img, 0, 0);

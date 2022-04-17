@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/17 23:41:40 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/17 23:56:37 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC =	$Smain.c \
 		$Sinit.c \
 		$Sinit_color.c \
 		$Shandle_it.c \
-		$Shandle_it_keys.c
+		$Shandle_keys.c
 
 HDR = fdf.h fdf_keys.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)

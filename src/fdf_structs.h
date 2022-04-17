@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:47:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:55:23 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_point
 	double	x;
 	double	y;
 	double	z;
-	double	c;
 }	t_point;
 
 typedef struct s_color

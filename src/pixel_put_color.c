@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:20:23 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 10:47:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:01:41 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,3 @@ int	rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
 	return (r << 16 | g << 8 | b);
 }
 
-int	argb_to_int(unsigned char a,
-				unsigned char r,
-				unsigned char g,
-				unsigned char b)
-{
-	return (a << 24 | r << 16 | g << 8 | b);
-}
