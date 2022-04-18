@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:05:55 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 00:13:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 08:29:51 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	draw_line(t_line *line, t_context *ctx)
 	i = 0;
 	if (!neither_point_in_window(line, ctx))
 	{
+		// if BOTH points in window do unchecked put
+		// else ...
 		while (i <= steps)
 		{
 			checked_pixel_put(&ctx->fb, p.x, p.y,

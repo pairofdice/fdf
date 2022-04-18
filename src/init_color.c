@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 23:26:45 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:33:25 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 08:36:37 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,9 @@ void	set_color(t_line *line, t_context *ctx)
 void	set_z_range(t_context *ctx, double i)
 {
 	if (i < ctx->dims.z_min)
-	{
 		ctx->dims.z_min = i;
-	}
 	if (i > ctx->dims.z_max)
-	{
 		ctx->dims.z_max = i;
-	}
-}
-
-void	color_spread(t_context *ctx, t_point *p)
-{
-	p->c -= ctx->dims.z_min;
-	p->c /= ctx->dims.z_max ;
 }
 
 void	color_range_map(t_context *ctx)
@@ -61,7 +51,9 @@ void	color_range_map(t_context *ctx)
 		while (j < line.len)
 		{
 			p = (t_point *)vec_get(&line, j);
-			color_spread(ctx, p);
+
+			// Needs to get redone
+			set_color(&line, ctx); // maybe here? Definitely don't set color every frame
 			j++;
 		}
 		i++;

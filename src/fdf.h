@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 00:10:44 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 08:34:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	switch_projection(t_context *ctx);
 void	reset(t_context *ctx);
 int		points_in_window(t_line *l, t_context *ctx);
 int		neither_point_in_window(t_line *l, t_context *ctx);
-void	color_spread(t_context *ctx, t_point *p);
 float	interpolate(float a, float b, int i, int steps);
 void	color_range_map(t_context *ctx);
 

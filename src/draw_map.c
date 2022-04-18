@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:31:20 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 08:30:56 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	transform_line(t_point p1, t_point p2, t_context *ctx)
 	do_transforms(&p2, ctx);
 	line.a = p1;
 	line.b = p2;
-	set_color(&line, ctx);
 	draw_line(&line, ctx);
 }
 
