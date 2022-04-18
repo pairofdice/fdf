@@ -3,22 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 23:26:45 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 08:36:37 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:02:31 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	set_color(t_line *line, t_context *ctx)
+void	set_color(t_line *line)
 {
 	// TODO
+	line->a_color.r = 255;
+	line->a_color.g = 200;
+	line->a_color.b = 200;
+	line->b_color.r = 0;
+	line->b_color.g = 90;
+	line->b_color.b = 90;
+	if (ctx)
+	{}
 }
 /*
-	t_color	*a;
-	t_color	*b;
 
 	clr->g = 0;
 	clr->b = 0;
@@ -53,7 +59,7 @@ void	color_range_map(t_context *ctx)
 			p = (t_point *)vec_get(&line, j);
 
 			// Needs to get redone
-			set_color(&line, ctx); // maybe here? Definitely don't set color every frame
+			//set_color(&line, ctx); // maybe here? Definitely don't set color every frame
 			j++;
 		}
 		i++;

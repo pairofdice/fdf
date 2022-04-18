@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 22:58:17 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:59:59 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	load_map(int fd, t_context *ctx)
 		while (*words != 0)
 		{
 			p.z = clamp(ft_atoi(*words), Z_LIMIT);
-			p.c = p.z;
+			set_color(&p);
 			vec_push(&linevec, &p);
 			p.x++;
 			words++;

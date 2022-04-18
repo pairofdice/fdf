@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:00:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:31:18 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_map(t_vec *map)
 		while (k < line_vec->len)
 		{
 			p = *(t_point *)vec_get(line_vec, k++);
-			printf("[%4.1f %4.1f]", p.z, p.c);
+			//printf("[%4.1f %4.1f]", p.z, p.c);
 		}
 		printf("\n");
 	}

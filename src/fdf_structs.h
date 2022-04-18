@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_structs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:55:23 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:53:44 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 
 # include "fdf.h"
 
-typedef struct s_point
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_point;
-
 typedef struct s_color
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 }	t_color;
+
+typedef struct s_point
+{
+	double	x;
+	double	y;
+	double	z;
+	t_color c;
+}	t_point;
+
 
 typedef struct s_line
 {
