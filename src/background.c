@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:00:29 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 00:09:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:14:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	save_colorslide(t_frame_buffer *fb)
+void	colorslide(t_frame_buffer *fb)
 {
 	int	y;
 	int	x;
@@ -43,7 +43,7 @@ void	copy_bg(t_frame_buffer *fb)
 
 void	blank(t_frame_buffer *fb)
 {
-	ft_memset(fb->data, rgb_to_int(0, 0, 0), WIN_W * WIN_H * 4);
+	ft_memset(fb->data, rgb_to_int(123, 123, 123), WIN_W * WIN_H * 4);
 }
 	/*
 	int x;

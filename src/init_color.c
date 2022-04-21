@@ -6,23 +6,25 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 23:26:45 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 20:02:31 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:59:06 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	set_color(t_line *line)
+void	set_color(t_point *color, double c, t_context *ctx)
 {
-	// TODO
-	line->a_color.r = 255;
-	line->a_color.g = 200;
-	line->a_color.b = 200;
-	line->b_color.r = 0;
-	line->b_color.g = 90;
-	line->b_color.b = 90;
-	if (ctx)
-	{}
+	if (c < 0)
+	{
+		color->x = 0;
+		color->y = 100;
+		color->z = c / ctx->dims.z_min * 255;
+	} else
+	{
+		color->x = c / ctx->dims.z_max * 255;
+		color->y = 100;
+		color->z = 0;
+	}
 }
 /*
 

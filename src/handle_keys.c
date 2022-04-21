@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_it_keys.c                                   :+:      :+:    :+:   */
+/*   handle_keys.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 18:48:43 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 23:06:21 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:03:53 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	on_keys_a(int key_nb, t_context *ctx)
 		ctx->t.zscale -= 0.02;
 	if (key_nb == KEY_MB_D || key_nb == KEY_D)
 		ctx->t.shift_x += 10;
-	if (key_nb == KEY_MB_S || key_nb == KEY_S)
+	if (key_nb == KEY_MB_A || key_nb == KEY_A)
 		ctx->t.shift_x -= 10;
 	if (key_nb == KEY_MB_S || key_nb == KEY_S)
 		ctx->t.shift_y += 10;

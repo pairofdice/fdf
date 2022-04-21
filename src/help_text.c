@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 18:52:53 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:06:04 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void	help_text(t_context *ctx)
 	hints[8] = 0;
 	put_hints(ctx, hints);
 	toc = clock();
-	printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
+	//printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
 	ctx->tic = toc;
 }

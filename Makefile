@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/17 23:56:37 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/21 17:00:40 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC =	$Smain.c \
 		$Sdraw_map.c \
 		$Stransforms.c \
 		$Sprojections.c \
+		$Sprojections_more.c \
 		$Sbackground.c \
 		$Sline.c \
 		$Spixel_put_color.c \
@@ -27,7 +28,7 @@ SRC =	$Smain.c \
 		$Shandle_it.c \
 		$Shandle_keys.c
 
-HDR = fdf.h fdf_keys.h fdf_structs.h
+HDR = fdf.h fdf_values.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)
 LIBFT = libft/
 LIBA = libft/libft.a
@@ -42,7 +43,7 @@ $(NAME): $(SRC) $(OBJ) $(LIBA)
 	$(CC) -o $@ -I /usr/local/include $(SRC) $(LIBA) -L /usr/local/lib/ -lmlx $(FRAMEWORKS)
 
 mb: $(SRC) $(OBJ) $(LIBA)
-	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -flto
+	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -flto -O3
 
 # -g -fsanitize=address
 $(LIBA):

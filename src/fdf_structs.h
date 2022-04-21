@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 19:53:44 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:17:34 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ typedef struct s_point
 	double	x;
 	double	y;
 	double	z;
-	t_color c;
+	double	c;
 }	t_point;
 
 
 typedef struct s_line
 {
 	t_point	a;
-	t_color	a_color;
 	t_point	b;
-	t_color	b_color;
 }	t_line;
 
 typedef struct s_dims
@@ -45,8 +43,6 @@ typedef struct s_dims
 	float	h;
 	double	z_min;
 	double	z_max;
-	float	c_min;
-	float	c_max;
 }	t_dims;
 
 typedef struct s_frame_buffer

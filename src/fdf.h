@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 20:02:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:14:31 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //# include "../minilibx/mlx.h"
 # include "mlx.h"
 # include "../libft/libft.h"
-# include "fdf_keys.h"
+# include "fdf_values.h"
 # include "fdf_structs.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -36,7 +36,7 @@ int		argb_to_int(unsigned char a,
 			unsigned char g,
 			unsigned char b);
 void	draw_line(t_line *line, t_context *ctx);
-void	save_colorslide(t_frame_buffer *fb);
+void	colorslide(t_frame_buffer *fb);
 void	blank(t_frame_buffer *fb);
 void	copy_bg(t_frame_buffer *fb);
 void	model_to_world(t_context *ctx);
@@ -65,8 +65,8 @@ int		on_mouse_up(int button, int x, int y, t_context *ctx);
 int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dimensions(t_context *ctx);
-void	set_color(t_line *line);
 void	set_z_range(t_context *ctx, double i);
+void	set_color(t_point *color, double z, t_context *ctx);
 void	switch_auto_rotation(t_context *ctx);
 void	do_transforms(t_point *p, t_context *ctx);
 void	project(t_context *ctx, t_point *p);

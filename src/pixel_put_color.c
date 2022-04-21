@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_put_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:20:23 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 00:01:41 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:12:51 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	checked_pixel_put(t_frame_buffer *fb, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x < 900 && y >= 0 && y < 900)
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
 	{
 		dst = fb->data + (y * fb->line_length + x * (fb->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
