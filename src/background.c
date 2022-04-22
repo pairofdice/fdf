@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:00:29 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 17:14:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:30:30 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	copy_bg(t_frame_buffer *fb)
 {
 	ft_memcpy(fb->data, fb->databg, WIN_W * WIN_H * 4);
 }
-
 
 void	blank(t_frame_buffer *fb)
 {

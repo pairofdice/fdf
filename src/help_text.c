@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 16:06:04 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:36:56 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	help_text(t_context *ctx)
 {
 	char	*hints[9];
 	clock_t	toc;
+	int		i;
 
 	hints[0] = "Move:     W, A, S, D";
 	hints[1] = "Zoom:     R, F";
@@ -38,8 +39,13 @@ void	help_text(t_context *ctx)
 	hints[5] = "Project.: P";
 	hints[7] = "Reset:    Z";
 	hints[8] = 0;
-	put_hints(ctx, hints);
+	i = 0;
+	while (i < 7)
+	{
+		mlx_string_put(ctx->mlx, ctx->win, 20, 20 + i * 13, 0xFFFFFF, hints[i]);
+		i++;
+	}
 	toc = clock();
-	//printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
+	printf("FPS: %f\n", 1.0 / ((double)(toc - ctx->tic) / CLOCKS_PER_SEC));
 	ctx->tic = toc;
 }

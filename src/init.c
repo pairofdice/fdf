@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:15:47 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 17:14:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:27:18 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	init_context(t_context *ctx)
 {
 	ctx->mlx = mlx_init();
 	ctx->fb.img = mlx_new_image(ctx->mlx, WIN_W, WIN_H);
+	ctx->fb.imgbg = mlx_new_image(ctx->mlx, WIN_W, WIN_H);
 	ctx->fb.data = mlx_get_data_addr(ctx->fb.img, &ctx->fb.bits_per_pixel,
 			&ctx->fb.line_length, &ctx->fb.endian);
-	ctx->fb.databg = mlx_get_data_addr(ctx->fb.img, &ctx->fb.bits_per_pixel,
+	ctx->fb.databg = mlx_get_data_addr(ctx->fb.imgbg, &ctx->fb.bits_per_pixel,
 			&ctx->fb.line_length, &ctx->fb.endian);
 	ctx->win = mlx_new_window(ctx->mlx, WIN_W, WIN_H, "Machine State");
-
 	ctx->t.rot = 0;
 	ctx->t.shift_x = 0;
 	ctx->t.shift_y = 0;

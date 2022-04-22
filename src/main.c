@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 17:31:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:29:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 		//line_vec = (t_vec *)map->memory[r].memory;
 		// ptr = &map->memory[r];
 		//line_vec = (t_vec *) &map->memory[r];
+
 void	print_map(t_vec *map)
 {
 	t_vec	*line_vec;
@@ -33,7 +34,7 @@ void	print_map(t_vec *map)
 		while (k < line_vec->len)
 		{
 			p = *(t_point *)vec_get(line_vec, k++);
-			//printf("[%4.1f %4.1f]", p.z, p.c);
+			printf("[%4.1f %4.1f]", p.z, p.c);
 		}
 		printf("\n");
 	}
@@ -55,9 +56,8 @@ int	main(int argc, char **argv)
 
 	handle_args(argc, argv, &ctx);
 	init_context(&ctx);
+	colorslide(&ctx.fb);
 	max_dimensions(&ctx);
-	color_range_map(&ctx);
-	print_map(&ctx.map);
 	hook_em_up(&ctx);
 	mlx_loop(ctx.mlx);
 	return (0);

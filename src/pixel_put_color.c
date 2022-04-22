@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_put_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:20:23 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 17:12:51 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:42:11 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ int	rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
 {
 	return (r << 16 | g << 8 | b);
 }
-

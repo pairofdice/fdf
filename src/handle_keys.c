@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keys.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 18:48:43 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 16:03:53 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:38:23 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	on_keys_b(int key_nb, t_context *ctx)
 {
 	if (key_nb == KEY_MB_W || key_nb == KEY_W)
 		ctx->t.shift_y -= 10;
+	if (key_nb == KEY_MB_A || key_nb == KEY_A)
+		ctx->t.shift_x -= 10;
+	if (key_nb == KEY_MB_S || key_nb == KEY_S)
+		ctx->t.shift_y += 10;
+	if (key_nb == KEY_MB_D || key_nb == KEY_D)
+		ctx->t.shift_x += 10;
 	if (key_nb == KEY_MB_B || key_nb == KEY_B)
 		switch_auto_rotation(ctx);
 	if (key_nb == KEY_MB_P || key_nb == KEY_P)
@@ -30,8 +36,6 @@ int	on_keys_b(int key_nb, t_context *ctx)
 
 int	on_keys_a(int key_nb, t_context *ctx)
 {
-	ft_putnbr(key_nb);
-	ft_putchar('\n');
 	if (key_nb == KEY_MB_ESC || key_nb == KEY_ESC)
 		fdf_close(ctx);
 	if (key_nb == KEY_MB_Q || key_nb == KEY_Q)
@@ -46,11 +50,5 @@ int	on_keys_a(int key_nb, t_context *ctx)
 		ctx->t.zscale += 0.02;
 	if (key_nb == KEY_MB_G || key_nb == KEY_G)
 		ctx->t.zscale -= 0.02;
-	if (key_nb == KEY_MB_D || key_nb == KEY_D)
-		ctx->t.shift_x += 10;
-	if (key_nb == KEY_MB_A || key_nb == KEY_A)
-		ctx->t.shift_x -= 10;
-	if (key_nb == KEY_MB_S || key_nb == KEY_S)
-		ctx->t.shift_y += 10;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_it.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 16:09:33 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:36:00 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	on_keypress(int key_nb, t_context *ctx)
 {
+	ft_putnbr(key_nb);
+	ft_putchar('\n');
 	on_keys_a(key_nb, ctx);
 	on_keys_b(key_nb, ctx);
 	return (0);
@@ -29,7 +31,7 @@ int	fdf_close(t_context *vars)
 int	on_mouse_down(int button, int x, int y, t_context *ctx)
 {
 	printf("%d %d %d\n", button, x, y);
-	if (x >= 0 && x < WIN_W && y - 31868>= 0 && y - 31868 < WIN_H)
+	if (x >= 0 && x < WIN_W && y - 31868 >= 0 && y - 31868 < WIN_H)
 	{
 		if (button == 2)
 			ctx->right_mouse_dn = 1;

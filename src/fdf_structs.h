@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_structs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 16:17:34 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:24:08 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_dims
 typedef struct s_frame_buffer
 {
 	void	*img;
+	void	*imgbg;
 	char	*data;
 	char	*databg;
 	int		bits_per_pixel;

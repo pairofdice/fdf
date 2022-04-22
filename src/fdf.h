@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 17:14:31 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:26:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <time.h>
 
-//# include "../minilibx/mlx.h"
-# include "mlx.h"
+# include "../minilibx/mlx.h"
+//# include "mlx.h"
 # include "../libft/libft.h"
 # include "fdf_values.h"
 # include "fdf_structs.h"
@@ -66,7 +66,7 @@ int		on_mouse_move(int x, int y, t_context *ctx);
 int		fdf_close(t_context *vars);
 void	max_dimensions(t_context *ctx);
 void	set_z_range(t_context *ctx, double i);
-void	set_color(t_point *color, double z, t_context *ctx);
+void	set_color(t_point *color, t_point p, t_context *ctx);
 void	switch_auto_rotation(t_context *ctx);
 void	do_transforms(t_point *p, t_context *ctx);
 void	project(t_context *ctx, t_point *p);
