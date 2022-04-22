@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/21 22:33:29 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/22 18:08:17 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ SRC =	$Smain.c \
 		$Spixel_put_color.c \
 		$Shelp_text.c \
 		$Sinit.c \
-		$Sinit_color.c \
+		$Scolor.c \
 		$Shandle_it.c \
-		$Shandle_keys.c
+		$Shandle_keys.c \
+		$Sbounds_checks.c
 
 HDR = fdf.h fdf_values.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)

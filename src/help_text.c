@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   help_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:35:51 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 23:36:56 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:05:15 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	put_hints(t_context *ctx, char **hints)
-{
-	int	i;
-
-	i = 0;
-	while (*hints)
-	{
-		mlx_string_put(ctx->mlx, ctx->win, 20, 20 + i, 0xFFFFFF, *hints);
-		i += 13;
-		hints++;
-	}
-}
 
 void	help_text(t_context *ctx)
 {
@@ -31,14 +18,13 @@ void	help_text(t_context *ctx)
 	clock_t	toc;
 	int		i;
 
-	hints[0] = "Move:     W, A, S, D";
+	hints[0] = "Move:     W, A, S, D or Mouse2";
 	hints[1] = "Zoom:     R, F";
-	hints[2] = "Height:   T, G";
+	hints[2] = "Height:   T, G or Mouse1";
 	hints[3] = "Rotate:   Q, E";
 	hints[4] = "Auto-rot: B";
 	hints[5] = "Project.: P";
-	hints[7] = "Reset:    Z";
-	hints[8] = 0;
+	hints[6] = "Reset:    Z";
 	i = 0;
 	while (i < 7)
 	{

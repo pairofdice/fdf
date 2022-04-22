@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:37:46 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 22:26:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:12:09 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <time.h>
 
-# include "../minilibx/mlx.h"
-//# include "mlx.h"
+//# include "../minilibx/mlx.h"
+# include "mlx.h"
 # include "../libft/libft.h"
 # include "fdf_values.h"
 # include "fdf_structs.h"
@@ -30,7 +30,7 @@ int		load_map(int fd, t_context *ctx);
 void	img_pixel_put(t_frame_buffer *fb, int x, int y, int color);
 void	save_bg(t_frame_buffer *fb, int x, int y, int color);
 void	checked_pixel_put(t_frame_buffer *fb, int x, int y, int color);
-int		rgb_to_int(unsigned char r, unsigned char g, unsigned char b);
+int		rgb_to_int(t_point c);
 int		argb_to_int(unsigned char a,
 			unsigned char r,
 			unsigned char g,

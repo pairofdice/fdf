@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:15:47 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 13:27:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:38:55 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// , t_vec *map, int fd
 void	init_context(t_context *ctx)
 {
 	ctx->mlx = mlx_init();
@@ -49,6 +48,14 @@ void	reset(t_context *ctx)
 	ctx->draw_bg = 1;
 	ctx->t.projection = NUM_PROJ;
 	ctx->t.perspective = -1;
+}
+
+void	set_z_range(t_context *ctx, double i)
+{
+	if (i < ctx->dims.z_min)
+		ctx->dims.z_min = i;
+	if (i > ctx->dims.z_max)
+		ctx->dims.z_max = i;
 }
 
 void	max_dimensions(t_context *ctx)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transforms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/17 22:52:38 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:34:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@ void	scale_rotate(t_point *p, t_context *ctx)
 	p->y = y * cos(rotation) + x * sin(rotation);
 }
 
+/*
+	
+ */
 void	world_to_view(t_point *p, int x, int y)
 {
 	p->x = ((float)WIN_W / 2.0) + p->x * (WIN_W / INIT_SCALE);
-	p->y = ((float)WIN_H / 2.0) + p->y * (WIN_H / INIT_SCALE);
+	p->y = ((float)WIN_H / 2.0) + p->y * (WIN_W / INIT_SCALE);
 	p->x += x;
 	p->y += y;
 }
 
 /*
-	normalize map coordinates from (0, something) to (-1, 1)
+	normalize map coordinates from (0, map_max_dimension) to (-1, 1)
  */
 void	model_to_world_per_point(t_point *p, t_context *ctx)
 {
@@ -70,4 +73,11 @@ void	switch_auto_rotation(t_context *ctx)
 		ctx->t.auto_rotate = -1;
 	else if (ctx->t.auto_rotate == -1)
 		ctx->t.auto_rotate = 1;
+}
+
+void	do_transforms(t_point *p, t_context *ctx)
+{
+	scale_rotate(p, ctx);
+	project(ctx, p);
+	world_to_view(p, ctx->t.shift_x, ctx->t.shift_y);
 }
