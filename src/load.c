@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:00:22 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 16:17:59 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 20:18:28 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ int	handle_args(int argc, char **argv, t_context *ctx)
 	return (1);
 }
 
-static int	clamp(int i, int boundary)
-{
-	if (i > boundary)
-		i = boundary;
-	if (i < -boundary)
-		i = -boundary;
-	return (i);
-}
-
 int	load_map(int fd, t_context *ctx)
 {
 	char	*line;
@@ -58,7 +49,7 @@ int	load_map(int fd, t_context *ctx)
 		words = ft_strsplit(line, ' ');
 		while (*words != 0)
 		{
-			p.z = clamp(ft_atoi(*words), Z_LIMIT);
+			p.z = ft_atoi(*words);
 			p.c = p.z;
 			vec_push(&linevec, &p);
 			p.x++;

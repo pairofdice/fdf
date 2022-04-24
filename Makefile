@@ -3,31 +3,32 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/22 18:08:17 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/24 20:20:50 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 S = src/
 SRC =	$Smain.c \
-		$Sload.c \
-		$Sdraw.c \
-		$Sdraw_map.c \
-		$Stransforms.c \
-		$Sprojections.c \
-		$Sprojections_more.c \
 		$Sbackground.c \
-		$Sline.c \
-		$Spixel_put_color.c \
-		$Shelp_text.c \
-		$Sinit.c \
+		$Sbounds_checks.c \
+		$Scolor_maps.c \
 		$Scolor.c \
+		$Sdraw_map.c \
+		$Sdraw.c \
 		$Shandle_it.c \
 		$Shandle_keys.c \
-		$Sbounds_checks.c
+		$Shelp_text.c \
+		$Sinit.c \
+		$Sline.c \
+		$Sload.c \
+		$Spixel_put_color.c \
+		$Sprojections.c \
+		$Sprojections_more.c \
+		$Stransforms.c
 
 HDR = fdf.h fdf_values.h fdf_structs.h
 OBJ = $(SRC:%.c=%.o)
@@ -45,7 +46,6 @@ $(NAME): $(SRC) $(OBJ) $(LIBA)
 
 mb: $(SRC) $(OBJ) $(LIBA)
 	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -flto -O3
-
 # -g -fsanitize=address
 $(LIBA):
 	make -C $(LIBFT)

@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:59:05 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 23:36:00 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:51:40 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,3 @@ int	on_mouse_up(int button, int x, int y, t_context *ctx)
 		ctx->left_mouse_dn = 0;
 	return (0);
 }
-/*
-
-int fdf(void *param)
-
-ON_KEYDOWN 	2 	int (*f)(int keycode, void *param)
-ON_KEYUP* 	3 	int (*f)(int keycode, void *param)
-ON_MOUSEDOWN* 	4 	int (*f)(int button, int x, int y, void *param)
-ON_MOUSEUP 	5 	int (*f)(int button, int x, int y, void *param)
-ON_MOUSEMOVE 	6 	int (*f)(int x, int y, void *param)
-ON_EXPOSE* 	12 	int (*f)(void *param)
-ON_DESTROY 	17 	int (*f)(void *param) */

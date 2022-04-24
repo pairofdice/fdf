@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 18:48:43 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/21 21:38:23 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:56:16 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	on_keys_b(int key_nb, t_context *ctx)
 		ctx->t.shift_x += 10;
 	if (key_nb == KEY_MB_B || key_nb == KEY_B)
 		switch_auto_rotation(ctx);
+	if (key_nb == KEY_MB_C || key_nb == KEY_C)
+	{
+		ctx->t.color_map++;
+		ctx->t.color_map %= NUM_COLORS;
+	}
 	if (key_nb == KEY_MB_P || key_nb == KEY_P)
 	{
 		ctx->t.projection++;
@@ -50,5 +55,7 @@ int	on_keys_a(int key_nb, t_context *ctx)
 		ctx->t.zscale += 0.02;
 	if (key_nb == KEY_MB_G || key_nb == KEY_G)
 		ctx->t.zscale -= 0.02;
+	if (key_nb == KEY_MB_N || key_nb == KEY_N)
+		ctx->draw_bg *= -1;
 	return (0);
 }

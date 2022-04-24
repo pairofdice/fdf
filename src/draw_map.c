@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:01:21 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/18 08:30:56 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 22:49:37 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ void	draw_map(t_context *ctx)
 		map_line = (t_vec *)vec_get(&ctx->map, y);
 		map_next = (t_vec *)vec_get(&ctx->map, y + 1);
 		x = 0;
-		while (x < map_line->len - 1)
+		while (x < map_line->len)
 		{
 			draw_horiz_line(map_line, x, ctx);
 			draw_vert_line(map_line, map_next, x, ctx);
-			if (x == map_line->len - 2)
-				draw_vert_line(map_line, map_next, x + 1, ctx);
 			if (y == ctx->map.len - 2)
 				draw_horiz_line(map_next, x, ctx);
 			x++;

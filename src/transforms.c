@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transforms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 18:34:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 22:52:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	scale_rotate(t_point *p, t_context *ctx)
 }
 
 /*
-	
+
  */
 void	world_to_view(t_point *p, int x, int y)
 {
@@ -38,6 +38,10 @@ void	world_to_view(t_point *p, int x, int y)
 	p->y = ((float)WIN_H / 2.0) + p->y * (WIN_W / INIT_SCALE);
 	p->x += x;
 	p->y += y;
+	if (p->y > WIN_H + Z_LIMIT)
+		p->y = WIN_H + Z_LIMIT;
+	if (p->y < -Z_LIMIT)
+		p->y = -Z_LIMIT;
 }
 
 /*

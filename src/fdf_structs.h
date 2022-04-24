@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:49:09 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 13:24:08 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:55:18 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef struct s_point
 	double	c;
 }	t_point;
 
+typedef struct s_deltas
+{
+	double	x;
+	double	y;
+	double	z;
+	double	r;
+	double	g;
+	double	b;
+}	t_deltas;
 
 typedef struct s_line
 {
@@ -67,8 +76,10 @@ typedef struct s_transforms
 	float	zscale;
 	int		frame_n;
 	int		auto_rotate;
+	int		auto_rotate_rate;
 	int		projection;
 	int		perspective;
+	int		color_map;
 }	t_transforms;
 
 typedef struct s_context
@@ -80,7 +91,6 @@ typedef struct s_context
 	int				h;
 	t_vec			map;
 	t_transforms	t;
-	clock_t			tic;
 	int				draw_bg;
 	t_dims			dims;
 	int				mouse_x;

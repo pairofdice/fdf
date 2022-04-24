@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 23:26:45 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 18:13:23 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:55:55 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	set_color(t_point *color, t_point p, t_context *ctx)
+void	set_color(t_point *color, t_deltas *deltas, t_line *l, t_context *ctx)
 {
-	if (p.c < 0)
-	{
-		color->x = 0;
-		color->y = 125 - sin(((float)p.y + ctx->t.frame_n) / 50.0) * 50 ;
-		if (ctx->dims.z_min != 0)
-			color->z = p.c / ctx->dims.z_min * 255;
-		else
-			color->z = 0;
-	}
-	else
-	{
-		if (ctx->dims.z_max != 0)
-			color->x = p.c / ctx->dims.z_max * 255;
-		else
-			color->x = 0;
-		color->y = 125 - sin(((float)p.y + ctx->t.frame_n) / 50.0) * 50 ;
-		color->z = 255 - color->y ;
-	}
+	t_point	end_color;
+	void	(*fn_ptrs[NUM_COLORS])(t_point *color, t_point *p, t_context *ctx);
+
+	fn_ptrs[0] = rainbow_color;
+	fn_ptrs[1] = red_blue;
+	fn_ptrs[2] = black_white;
+	fn_ptrs[3] = rainbow_z_color;
+	(*fn_ptrs[ctx->t.color_map])(color, &l->a, ctx);
+	(*fn_ptrs[ctx->t.color_map])(&end_color, &l->b, ctx);
+	deltas->r = end_color.x - color->x;
+	deltas->g = end_color.y - color->y;
+	deltas->b = end_color.z - color->z;
 }
 
 int	rgb_to_int(t_point c)

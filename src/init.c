@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:15:47 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 14:38:55 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:55:32 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_context(t_context *ctx)
 	ctx->t.scale = 1;
 	ctx->t.zscale = 1;
 	ctx->t.auto_rotate = 0;
+	ctx->t.auto_rotate_rate = 5;
 	ctx->w = WIN_W;
 	ctx->h = WIN_H;
 	ctx->draw_bg = 1;
@@ -35,6 +36,7 @@ void	init_context(t_context *ctx)
 	ctx->dims.z_max = -Z_LIMIT;
 	ctx->t.projection = NUM_PROJ;
 	ctx->t.perspective = 1;
+	ctx->t.color_map = 0;
 }
 
 void	reset(t_context *ctx)
@@ -48,6 +50,8 @@ void	reset(t_context *ctx)
 	ctx->draw_bg = 1;
 	ctx->t.projection = NUM_PROJ;
 	ctx->t.perspective = -1;
+	ctx->t.auto_rotate_rate = 5;
+	ctx->t.color_map = 0;
 }
 
 void	set_z_range(t_context *ctx, double i)

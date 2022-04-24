@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_values.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:50:24 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/22 18:29:28 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/24 23:29:22 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_KEYS_H
-# define FDF_KEYS_H
+#ifndef FDF_VALUES_H
+# define FDF_VALUES_H
 
 enum {
 	ON_KEYDOWN = 2,
@@ -21,10 +21,12 @@ enum {
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 33,
-	WIN_W = 1536,
-	WIN_H = 1024,
+	WIN_W = 900,
+	WIN_H = 900,
 	NUM_PROJ = 6,
-	Z_LIMIT = 256,
+	NUM_HINTS = 9,
+	NUM_COLORS = 4,
+	Z_LIMIT = 1024,
 	KEY_MB_ESC = 65307,
 	KEY_MB_W = 119,
 	KEY_MB_A = 97,
@@ -39,6 +41,8 @@ enum {
 	KEY_MB_P = 112,
 	KEY_MB_Z = 122,
 	KEY_MB_B = 98,
+	KEY_MB_C = 99,
+	KEY_MB_N = 110,
 	KEY_ESC = 53,
 	KEY_Q = 12,
 	KEY_E = 14,
@@ -52,7 +56,9 @@ enum {
 	KEY_W = 13,
 	KEY_B = 11,
 	KEY_P = 35,
-	KEY_Z = 6
+	KEY_Z = 6,
+	KEY_C = 0,
+	KEY_N = 0
 };
 # define COS_30 0.8660254
 # define SIN_30 0.5
