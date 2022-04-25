@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 12:14:02 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/24 18:50:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/25 15:06:54 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	hook_em_up(t_context *ctx)
+static void	hook_em_up(t_context *ctx)
 {
 	mlx_loop_hook(ctx->mlx, draw_frame, ctx);
 	mlx_hook(ctx->win, ON_KEYDOWN, 1L << 0, on_keypress, ctx);

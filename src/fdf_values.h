@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_values.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:50:24 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/24 23:29:22 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:36:05 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ enum {
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 33,
-	WIN_W = 900,
-	WIN_H = 900,
+	WIN_W = 1536,
+	WIN_H = 1024,
 	NUM_PROJ = 6,
 	NUM_HINTS = 9,
 	NUM_COLORS = 4,
 	Z_LIMIT = 1024,
+	Y_OFFSET = 31868,
 	KEY_MB_ESC = 65307,
 	KEY_MB_W = 119,
 	KEY_MB_A = 97,
@@ -57,8 +58,8 @@ enum {
 	KEY_B = 11,
 	KEY_P = 35,
 	KEY_Z = 6,
-	KEY_C = 0,
-	KEY_N = 0
+	KEY_C = 8,
+	KEY_N = 45
 };
 # define COS_30 0.8660254
 # define SIN_30 0.5
@@ -67,5 +68,6 @@ enum {
 # define SIN_7 0.1218693
 # define COS_7 0.9925461
 # define INIT_SCALE 4.0
+# define MOUSE_SPEED 333.0
 
 #endif

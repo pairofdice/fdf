@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getnextline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:49:28 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/25 11:07:35 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:04:28 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /*
 	Copy from storage to line for output.
@@ -50,6 +51,8 @@ static int	read_into_storage(t_vec *storage, const int fd)
 	char	buffer[BUFF_SIZE + 1];
 
 	ret = read(fd, buffer, BUFF_SIZE);
+	if (ret < 0)
+		return (0);
 	hodl = NULL;
 	while (ret > 0)
 	{
