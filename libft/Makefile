@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 12:23:08 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/24 20:25:08 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/25 00:16:36 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ all: $(NAME)
 $(NAME):
 	gcc $(FLAGS) $(SRCS) -c -I$(HDRS) -O3 -flto
 	ar rc $(NAME) $(OBJS)
-# -g -fsanitize=address
+
 clean:
 	rm -f $(OBJS)
 

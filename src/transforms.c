@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:05:14 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/04/24 22:52:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/04/25 00:14:11 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	scale_rotate(t_point *p, t_context *ctx)
 }
 
 /*
-
+	scale map after transforms to fill the screen
  */
 void	world_to_view(t_point *p, int x, int y)
 {

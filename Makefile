@@ -6,7 +6,7 @@
 #    By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 20:24:56 by jsaarine          #+#    #+#              #
-#    Updated: 2022/04/24 20:20:50 by jsaarine         ###   ########.fr        #
+#    Updated: 2022/04/25 00:16:17 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME): $(SRC) $(OBJ) $(LIBA)
 
 mb: $(SRC) $(OBJ) $(LIBA)
 	$(CC) -o $@ -I minilibx/ $(SRC) $(LIBA) -L minilibx/ -lmlx -L /usr/X11/lib -l X11 -l Xext $(FRAMEWORKS) -flto -O3
-# -g -fsanitize=address
+
 $(LIBA):
 	make -C $(LIBFT)
 
